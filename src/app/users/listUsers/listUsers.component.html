@@ -1,0 +1,88 @@
+<div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div *ngIf="loading" style="padding: 30px;">
+                            <div class="spinner-outer">
+                                <h4>Fetching Data</h4>
+                                <p>Please wait...</p><br>
+                                <div class="spinner-box la-ball-clip-rotate-pulse la-dark la-2x">
+                                    <div></div>
+                                    <div></div>
+                                </div>                                    
+                            </div>
+                        </div>
+                        <div *ngIf="!loading && tableData1">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Users</h4>
+                                        <p class="category">All Users</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card-header text-right">
+                                        
+                                        <h4 class="card-title">User Group</h4>
+                                        <div class="pull-right">
+                                            <div class="dropdown" style="max-width: 140px; cursor: pointer;">
+                                                <button href="#" class="btn btn-block dropdown-toggle" data-toggle="dropdown">
+                                                    {{user_type.name}}
+                                                    <b class="caret"></b>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a (click)="changeUserType('Golf Member')">Golf Member</a></li>
+                                                    <li><a (click)="changeUserType('Home Owner')">Home Owner</a></li>
+                                                    <li><a (click)="changeUserType('Admin')">Admin</a></li>
+                                                    <li *ngIf="user_type.value !== 'AllUsers'"><a (click)="changeUserType('All Users')">All</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content table-responsive table-full-width">
+                                <table class="table">
+                                        <thead>
+                                            <tr>
+                                            <th>{{ tableData1.headerRow[0] }}</th>
+                                            <th>{{ tableData1.headerRow[1] }}</th>
+                                            <th>{{ tableData1.headerRow[2] }}</th>
+                                            <th>{{ tableData1.headerRow[4] }}</th>
+                                            <th>{{ tableData1.headerRow[5] }}</th>
+                                            </tr>
+                                        </thead>
+                                    <tbody *ngIf="tableData1 && tableData1.dataRows">
+                                        <tr *ngFor="let row of tableData1.dataRows">
+                                            <td>{{row[0]}}</td>
+                                            <td>{{row[1]}}</td>
+                                            <td>{{row[2]}}</td>
+                                            <td>{{row[4]}}</td>
+                                            <td class="td-actions text-right">
+                                                <!-- <a rel="tooltip" title="View Profile" class="btn btn-info btn-simple btn-xs">
+                                                    <i class="ti-user"></i>
+                                                </a> -->
+                                                <a (click)="edit(row)" rel="tooltip" title="Edit Profile" class="btn btn-success btn-simple btn-xs">
+                                                    <i class="ti-pencil-alt"></i>
+                                                </a>
+                                                <a (click)="confirmDelete(row)" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="ti-close"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div *ngIf="!loading && !tableData1">
+                            <div class="spinner-outer" style="padding: 30px">
+                                <h4>No Users to Display</h4>
+                                <p>Please try again.</p><br>                                  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

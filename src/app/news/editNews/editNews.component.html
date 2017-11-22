@@ -1,0 +1,81 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-offset-2 col-lg-8 col-md-offset-3 col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Edit News</h4>
+                    </div>
+                    <div class="card-content" *ngIf="showPreview === false">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Title *</label>
+                                        <input type="text" class="form-control border-input"  [(ngModel)]="news.title"  placeholder="Title" value="" name="t">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Subtitle *</label>
+                                        <input type="text" class="form-control border-input" [(ngModel)]="news.subtitle" placeholder="Subtitle" value="" name="st">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="editor-outer">
+                                    <div [froalaEditor] [(froalaModel)]="news.html"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h4 class="card-title">User Group</h4>
+                                    <div class="radio">
+                                        <input type="radio" name="radio1" id="radio1" value="Home Owner" [(ngModel)]="user_group">
+                                        <label for="radio1">
+                                            Home Owners
+                                        </label>
+                                    </div>
+            
+                                    <div class="radio">
+                                        <input type="radio" name="radio1" id="radio2" value="Golf Member" [(ngModel)]="user_group">
+                                        <label for="radio2">
+                                            Golf Members
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center" style="padding: 15px">
+                                <button [disabled]="updating" type="submit" class="btn btn-info btn-fill btn-wd" (click)="showPreview = true">Preview</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+
+                    <div class="card-content" *ngIf="showPreview === true">
+                        <div class="row" *ngIf="news.html">
+                            <div class="editor-outer">
+                                <div [froalaView]="news.html"></div>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="!news.html">
+                            <div class="editor-outer">
+                                Please enter content for your post
+                            </div>
+                        </div>
+                        <div class="text-center" style="padding: 15px">
+                            <button [disabled]="updating" type="button" class="btn btn-wd btn-default btn-fill btn-move-left"  (click)="showPreview = false">
+                                <span class="btn-label">
+                                    <i class="ti-angle-left"></i>
+                                </span>
+                                Back
+                            </button> 
+                            <button [disabled]="updating" type="submit" class="btn btn-info btn-fill btn-wd" (click)="update()">Update</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

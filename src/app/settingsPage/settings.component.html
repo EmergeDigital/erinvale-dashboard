@@ -1,0 +1,86 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">                
+            <div class="col-lg-offset-2 col-lg-8 col-md-offset-3 col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Account Settings</h4>
+                    </div>
+                    <div class="card-content">
+                        <form>
+                            <div>
+                                <hr>
+                                <h5>Update Email Address</h5>
+                                <div class="row">
+                                    <div class="col-md-6" *ngIf="updatingEmail === false">
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control border-input" [(ngModel)]="new_email" placeholder="Email Address" value="" name="email">
+                                        </div>
+                                        <button [disabled]="updating" type="button" class="btn btn-wd btn-default btn-fill btn-move-right"  (click)="updatingEmail = true">
+                                            Next
+                                            <span class="btn-label">
+                                                <i class="ti-angle-right"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="updatingEmail === true">
+                                        <div class="form-group">
+                                            <label>Enter your password</label>
+                                            <input type="password" class="form-control border-input" [(ngModel)]="new_email_password" placeholder="Password" value="" name="ep">
+                                        </div>
+                                        <!-- <button [disabled]="updating" type="submit" class="btn btn-default btn-fill btn-wd">Cancel</button> -->
+                                        <button [disabled]="updating" type="button" class="btn btn-wd btn-default btn-fill btn-move-left"  (click)="updatingEmail = false">
+                                                <span class="btn-label">
+                                                    <i class="ti-angle-left"></i>
+                                                </span>
+                                                Back
+                                            </button> 
+                                        <button [disabled]="updating" type="submit" class="btn btn-info btn-fill btn-wd" (click)="updateEmail()">Change Email</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div>
+                                <h5>Update Password</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Current Password</label>
+                                            <input type="password" class="form-control border-input" [(ngModel)]="old_password" placeholder="Password" value="" name="p1">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>New Password</label>
+                                            <input type="password" class="form-control border-input" [(ngModel)]="new_password" placeholder="Password" value="" name="p2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Confirm New Password</label>
+                                            <input type="password" class="form-control border-input" [(ngModel)]="new_password2" placeholder="Password" value="" name="p3">
+                                        </div>
+                                        <button [disabled]="updating" type="submit" class="btn btn-info btn-fill btn-wd" (click)="updatePassword()">Change Password</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div>
+                                <h5>Logout</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button [disabled]="updating" type="button" class="btn btn-wd btn-danger btn-fill btn-magnify" (click)="logout()">
+                                            <span class="btn-label">
+                                                <i class="ti-unlock"></i>
+                                            </span>
+                                            Logout
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

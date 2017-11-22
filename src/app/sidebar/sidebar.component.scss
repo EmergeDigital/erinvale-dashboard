@@ -1,0 +1,40 @@
+
+.admin-links::before {
+    background-color: rgba(255, 255, 255, 0.3);
+    content: "";
+    position: absolute;
+    // top: 0px;
+    right: 15px;
+    width: calc(100% - 30px);
+    height: 1px;
+  
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(0,0,0,0);
+  -webkit-border-radius: 100px;
+}
+
+::-webkit-scrollbar:hover {
+  background-color: rgba(255, 255, 255, 0.09);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:active {
+  background: rgba(255, 255, 255, 0.61); /* Some darker color when you click it */
+  -webkit-border-radius: 100px;
+}
+
+/* add vertical min-height & horizontal min-width */
+::-webkit-scrollbar-thumb:vertical {
+min-height: 10px;
+}
+::-webkit-scrollbar-thumb:horizontal {
+min-width: 10px;
+}
