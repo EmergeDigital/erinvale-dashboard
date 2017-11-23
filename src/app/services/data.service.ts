@@ -249,6 +249,21 @@ export class DataService {
         });
       });
     }
+
+    //Gets a combined array of posts and news
+    getNews(_params: undefined): Promise<any[]> {
+        return new Promise((resolve, reject) => {
+          let permissions = this.permissions.getAccountType();
+          let params = _params || {};          
+          
+          this.http.get(this.API_URL + "/v1/posts/get_news", {params}).toPromise().then(result => {
+              const _result = result.json();
+              resolve(_result);
+          }).catch(ex => {
+              reject(ex);
+          });
+        });
+    }
     // ============== /NEWS ============== 
 
     // ============== EVENTS ============== 

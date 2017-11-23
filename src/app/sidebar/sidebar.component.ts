@@ -30,7 +30,7 @@ export const ROUTES: RouteInfo[] = [
 
     },
     {
-        path: '#',
+        path: '/news-events',
         title: 'News & Events',
         type: 'link',
         icontype: 'ti-book'

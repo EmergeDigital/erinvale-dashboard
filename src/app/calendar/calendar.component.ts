@@ -72,10 +72,35 @@ export class CalendarComponent implements OnInit{
 		});
 
 	}
+
+	getNews(params): Promise<any> {
+		return new Promise((resolve, reject) => {
+			this.data.getNews(params).then(news => {
+				resolve(news);
+			}).catch(ex => {
+				this.notify.failure("Unable to Fetch News", ex, true, "warning");
+				reject(ex);
+			})
+
+		});
+
+	}
 	
     constructor(public auth: AuthService, public router: Router, private route: ActivatedRoute,
         public data: DataService, public notify: NotificationsService, public permissions: PermissionsService) {
 			let params = this.processUserGroup(this.permissions.getAccountType());
+			this.getNews(params).then(news => {
+				console.log(news);
+				for(const n of news) {
+					if(n.date_start) {
+						console.log("EVENT: ", n);
+					} else {
+						console.log("POST: ", n);
+					}
+				}
+			}).catch(ex => {
+				console.log(ex)
+			});
 			this.refresh(params).then(events=> {
 				var $calendar = $('#fullCalendar');
 				var today = new Date();

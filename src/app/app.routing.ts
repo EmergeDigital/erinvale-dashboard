@@ -44,6 +44,12 @@ export const AppRoutes: Routes = [
                 path: '',
                 loadChildren: './timeline/timeline.module#TimelineModule'
             },{
+                path: '',
+                loadChildren: './newsPage/news.module#NewsModule'
+            },{
+                path: '',
+                loadChildren: './article/article.module#ArticleModule'
+            },{
                 path: 'users',
                 loadChildren: './users/users.module#UsersModule'
             },{

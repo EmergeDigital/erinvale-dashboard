@@ -1,0 +1,54 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">                
+            <div class="col-md-12">
+                <div class="card">
+                    <div *ngIf="loading" style="padding: 30px;">
+                        <div class="spinner-outer">
+                            <h4>Fetching Data</h4>
+                            <p>Please wait...</p><br>
+                            <div class="spinner-box la-ball-clip-rotate-pulse la-dark la-2x">
+                                <div></div>
+                                <div></div>
+                            </div>                                    
+                        </div>
+                    </div>
+                    <div *ngIf="!loading">
+                        <div *ngIf="post">
+                            <div class="card-header">                                
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h4 class="card-title">{{post.title}}<br />
+                                            <a href="#"><small>{{post.subtitle}}</small></a>
+                                        </h4>
+                                        <br><p style="font-size: 10px; font-style: italic">Posted {{getMoment(post.createdAt)}} by {{post.created_by}}</p>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <div style="float: right; text-align: right;">
+                                            <input type="text" value="{{getTags(post)}}" class="tagsinput" disabled="true" data-color="success"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content-sm">
+                                <hr>
+                                <div class="text-left" style="padding: 20px 10px 40px 10px">
+                                    <div [froalaView]="post.html"></div>
+                                </div>
+                                <div *ngIf="post.edited">
+                                    <br><p style="font-size: 10px; font-style: italic">{{post.edited}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!post" style="padding: 30px;">
+                            <div class="spinner-outer">
+                                <h4>Unable to fetch post</h4>
+                                <p>Please try again.</p><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

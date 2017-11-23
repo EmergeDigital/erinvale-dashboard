@@ -1,0 +1,83 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">                
+            <div class="col-md-12">
+                <div class="card">
+                    <div *ngIf="loading" style="padding: 30px;">
+                        <div class="spinner-outer">
+                            <h4>Fetching Data</h4>
+                            <p>Please wait...</p><br>
+                            <div class="spinner-box la-ball-clip-rotate-pulse la-dark la-2x">
+                                <div></div>
+                                <div></div>
+                            </div>                                    
+                        </div>
+                    </div>
+                    <div *ngIf="!loading">
+                        <div *ngIf="news">
+                            <div class="card-header">
+                                <h4 class="card-title">News &amp; Events</h4>
+                            </div>
+                            <div class="card-content">
+                                <!-- NEWS AND EVENTS CARDS HERE -->
+                                <hr>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6" *ngFor="let n of news">
+                                        
+                                        <a (click)="clicked(n)"><div class="card card-user" style="cursor: pointer">
+                                            <div class="image" *ngIf="n.image_url" style="height: auto">
+                                                <img src="{{n.image_url}}" style="width: 100%; height: auto;" alt="..."/>
+                                            </div>
+                                            <div class="image" *ngIf="!n.image_url" style="height: auto">
+                                                <img src="./../assets/img/placeholder_image.jpg" style="width: 100%; height: auto;" alt="..."/>
+                                            </div>
+                                            <div class="card-content-sm">
+                                                <div class="row">
+                                                    <div class="col-xs-7">
+                                                        <h4 class="card-title">{{n.title}}<br />
+                                                            <a href="#"><small>{{n.subtitle}}</small></a>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="col-xs-5">
+                                                        <div style="float: right; text-align: right;">
+                                                            <input type="text" value="{{getTags(n)}}" class="tagsinput" disabled="true" data-color="success"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- <p class="description text-center">
+                                                    
+                                                </p> -->
+                                            </div>
+                                            <hr>
+                                            <div class="text-left" style="padding: 10px;">
+
+                                                <!-- IF EVENT -->
+                                                <div *ngIf="n.date_start">
+                                                    <p><b>Date Start: </b>{{getMoment(n.date_start)}}<br>
+                                                       <b>Date End: </b>{{getMoment(n.date_end)}}
+                                                    </p>
+                                                </div>
+
+                                                <!-- IF POST -->                                                
+                                                <div *ngIf="!n.date_start">
+                                                    <p style="text-overflow: ellipsis; overflow: hidden;">{{n.text}}</p>
+                                                </div>
+                                            </div>
+                                        </div></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!news" style="padding: 30px;">
+                            <div class="spinner-outer">
+                                <h4>Unable to fetch news</h4>
+                                <p>Please try again.</p><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
