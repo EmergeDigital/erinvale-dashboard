@@ -3,8 +3,18 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="card card-calendar">
-                    <div class="card-content">
+                    <div class="card-content" style="cursor: pointer;">
                         <div id="fullCalendar"></div>
+                    </div>
+                    <div class="card-content" *ngIf="loading" style="padding: 30px;">
+                        <div class="spinner-outer">
+                            <h4>Fetching Data</h4>
+                            <p>Please wait...</p><br>
+                            <div class="spinner-box la-ball-clip-rotate-pulse la-dark la-2x">
+                                <div></div>
+                                <div></div>
+                            </div>                                    
+                        </div>
                     </div>
                 </div>
             </div>

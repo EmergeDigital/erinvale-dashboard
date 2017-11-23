@@ -37,7 +37,7 @@ export const ROUTES: RouteInfo[] = [
 
     },
     {
-        path: '#',
+        path: '/calendar',
         title: 'Calendar',
         type: 'link',
         icontype: 'ti-calendar'
