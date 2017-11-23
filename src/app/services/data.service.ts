@@ -318,5 +318,27 @@ export class DataService {
         });
       });
     }
+    
+    attendEvent(id, attendance): Promise<any> {
+      return new Promise((resolve, reject) => {
+        let body = {
+          event: {
+            id
+          },
+          user: {
+            id: this.auth.current_user.id,
+            attendance
+          }
+        };
+
+        this.http.post(this.API_URL + "/v1/events/attend", body).toPromise().then(result => {
+            const _result = result.json();
+            console.log(_result);
+            resolve(_result);
+        }).catch(ex => {
+            reject(ex.json());
+        });
+      });
+    }
     // ============== /EVENTS ============== 
 }
