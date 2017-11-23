@@ -202,8 +202,6 @@ export class DataService {
           
           this.http.get(this.API_URL + "/v1/posts/get_all", {params}).toPromise().then(result => {
               const _result = result.json();
-              // this.user_loaded.emit(_user);
-              // this.has_loaded = true;
               resolve(_result);
           }).catch(ex => {
               reject(ex);
@@ -245,8 +243,6 @@ export class DataService {
         this.http.post(this.API_URL + "/v1/posts/update", body).toPromise().then(result => {
             const _result = result.json();
             console.log(_result);
-            // this.user_loaded.emit(_user);
-            // this.has_loaded = true;
             resolve(_result);
         }).catch(ex => {
             reject(ex.json());
@@ -254,4 +250,73 @@ export class DataService {
       });
     }
     // ============== /NEWS ============== 
+
+    // ============== EVENTS ============== 
+    createEvent(event): Promise<any> {  
+      return new Promise((resolve, reject) => {
+        this.http.post(this.API_URL + "/v1/events/create", event).toPromise().then(event => {
+            const _event = event.json();
+            
+            resolve(_event);
+        }).catch(ex => {
+            reject(ex.json());
+        });
+      });
+    }
+    
+    getEvents(_params: undefined): Promise<any[]> {
+        return new Promise((resolve, reject) => {
+          let permissions = this.permissions.getAccountType();
+          let params = _params || {};          
+          
+          this.http.get(this.API_URL + "/v1/events/get_all", {params}).toPromise().then(result => {
+              const _result = result.json();
+              resolve(_result);
+          }).catch(ex => {
+              reject(ex);
+          });
+        });
+    }
+    
+    deleteEvent(id): Promise<any> {
+      return new Promise((resolve, reject) => {
+        this.http.post(this.API_URL + "/v1/events/delete", {event: {id: id}}).toPromise().then(response => {
+            const _response = response.json();
+            resolve(_response);
+        }).catch(ex => {
+            reject(ex);
+        });
+      });
+    }
+
+    getEvent(id): Promise<any> {
+      return new Promise((resolve, reject) => {                
+        this.http.get(this.API_URL + "/v1/events/get", {params: {id}}).toPromise().then(result => {
+            const _result = result.json();
+            resolve(_result);
+        }).catch(ex => {
+            reject(ex);
+        });
+      });
+    }
+    
+    updateEvent(changes, id): Promise<any> {
+      return new Promise((resolve, reject) => {
+        let body = {
+          event: {
+            id
+          },
+          changes
+        };
+
+        this.http.post(this.API_URL + "/v1/events/update", body).toPromise().then(result => {
+            const _result = result.json();
+            console.log(_result);
+            resolve(_result);
+        }).catch(ex => {
+            reject(ex.json());
+        });
+      });
+    }
+    // ============== /EVENTS ============== 
 }

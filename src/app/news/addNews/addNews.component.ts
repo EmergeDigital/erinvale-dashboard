@@ -74,6 +74,11 @@ export class AddNewsComponent{
         this.new_news.user_group_hoa = false;
         this.new_news.user_group_golf = true;
         break;
+      
+      case "All":        
+        this.new_news.user_group_hoa = true;
+        this.new_news.user_group_golf = true;
+        break;
     }
   }
 }

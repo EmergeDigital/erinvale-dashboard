@@ -23,6 +23,10 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-12">
+                                    <br>
+                                    <label>Post Content *</label>
+                                </div>
                                 <div class="editor-outer">
                                     <div [froalaEditor] [(froalaModel)]="new_news.html"></div>
                                 </div>
@@ -41,6 +45,13 @@
                                         <input type="radio" name="radio1" id="radio2" value="Golf Member" [(ngModel)]="user_group">
                                         <label for="radio2">
                                             Golf Members
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="radio">
+                                        <input type="radio" name="radio1" id="radio3" value="All" [(ngModel)]="user_group">
+                                        <label for="radio3">
+                                            All
                                         </label>
                                     </div>
                                 </div>

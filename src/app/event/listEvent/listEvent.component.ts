@@ -6,6 +6,7 @@ import {DataService} from "./../../services/data.service";
 import {NotificationsService} from "./../../services/notifications.service";
 import {PermissionsService} from "./../../services/permissions.service";
 
+import * as moment from 'moment';
 declare var $:any;
 
 declare interface Table_With_Checkboxes {
@@ -65,28 +66,29 @@ export class ListEventComponent{
 
     refresh(params) {
         this.loading = true;
-        this.data.getPosts(params).then(posts => {
-            console.log(posts);
-            let _posts = posts.map((p) => {
+        this.data.getEvents(params).then(events => {
+            console.log(events);
+            let _events = events.map((p) => {
                 return [
-                    p.image_url,
                     p.title,
                     p.subtitle,
                     this.permissions.processAccountType(p).replace(/([A-Z])/g, ' $1').trim(),
-                    p.created_by,
+                    moment(p.date_start).format('MM/DD/YYYY h:mm a').toUpperCase(),
+                    moment(p.date_end).format('MM/DD/YYYY h:mm a').toUpperCase(),
+                    p.location_name,
                     p.id,
                     p.created_by_id                    
                 ];
             })
-            console.log(_posts);
+            console.log(_events);
             this.tableData1 = {
-                headerRow: ['Main Image', 'Title', 'Subtitle', 'User Group', 'Created By'],
-                dataRows: _posts
+                headerRow: ['Title', 'Subtitle', 'User Group', 'Date Start', 'Date End', 'Location'],
+                dataRows: _events
             };
             this.loading = false;
             console.log(this.tableData1);
         }).catch(ex => {
-            this.notify.failure("Unable to Fetch Event", ex, true, "warning");
+            this.notify.failure("Unable to Fetch Events", ex, true, "warning");
             this.loading = true;
         })
 
@@ -94,19 +96,19 @@ export class ListEventComponent{
 
     edit(row) {
 
-      let id = row[5];
-      this.router.navigate(["/Event/edit/" + id]);
+      let id = row[6];
+      this.router.navigate(["/event/edit/" + id]);
     }
 
     confirmDelete(row) {
         console.log(row);
-        this.notify.success("Are You Sure?", "This post will be delete permanently", true, "warning-message-and-cancel").then( result => {
+        this.notify.success("Are You Sure?", "This event will be delete permanently", true, "warning-message-and-cancel").then( result => {
             if(result) {
-                this.data.deletePost(row[5]).then(result => {
-                    this.notify.success("Event Deleted", "Post has been deleted", false, "success");
+                this.data.deleteEvent(row[6]).then(result => {
+                    this.notify.success("Event Deleted", "Event has been deleted", false, "success");
                     this.changeUserType(this.user_type.name);
                 }).catch(ex => {
-                    this.notify.failure("Unable To Delete Post", ex, true, "warning");
+                    this.notify.failure("Unable To Delete Event", ex, true, "warning");
                 })
             }
         })

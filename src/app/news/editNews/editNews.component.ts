@@ -108,6 +108,11 @@ export class EditNewsComponent{
         this.news.user_group_hoa = false;
         this.news.user_group_golf = true;
         break;
+
+      case "All":        
+        this.news.user_group_hoa = true;
+        this.news.user_group_golf = true;
+        break;
     }
   }
 }

@@ -23,6 +23,34 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-6">
+                                    <!-- <h4 class="card-title">Date Start</h4> -->
+                                    <div class="form-group">
+                                        <label>Date Start *</label>
+                                        <input id="dateStart" type="text" class="form-control" placeholder="Date Start" name="ds"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- <h4 class="card-title">Date End</h4> -->
+                                    <div class="form-group">
+                                        <label>Date End *</label>
+                                        <input id="dateEnd" type="text" class="form-control" placeholder="Date End" name="de"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Location *</label>
+                                        <input type="text" class="form-control border-input"  [(ngModel)]="new_event.location_name"  placeholder="Where will this event be?" value="" name="l">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row"  *ngIf="refresh">
+                                <div class="col-12">
+                                    <br>
+                                    <label>Event Details *</label>
+                                </div>
                                 <div class="editor-outer">
                                     <div [froalaEditor] [(froalaModel)]="new_event.html"></div>
                                 </div>
@@ -41,6 +69,13 @@
                                         <input type="radio" name="radio1" id="radio2" value="Golf Member" [(ngModel)]="user_group">
                                         <label for="radio2">
                                             Golf Members
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="radio">
+                                        <input type="radio" name="radio1" id="radio3" value="All" [(ngModel)]="user_group">
+                                        <label for="radio3">
+                                            All
                                         </label>
                                     </div>
                                 </div>
