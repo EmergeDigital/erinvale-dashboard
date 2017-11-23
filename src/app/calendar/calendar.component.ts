@@ -6,6 +6,8 @@ import {DataService} from "./../services/data.service";
 import {NotificationsService} from "./../services/notifications.service";
 import {PermissionsService} from "./../services/permissions.service";
 
+import * as moment from 'moment';
+
 declare var swal: any;
 declare var $: any;
 
@@ -121,11 +123,14 @@ export class CalendarComponent implements OnInit{
 				for(const event of events) {
 					console.log(event);
 					let colourNum = Math.floor(Math.random() * 5);
+					let dateStrings = "<b>Start: </b>" + moment(event.date_start).format("DD MMM YYYY - h:mm a") + "<br><b>End: </b>" + moment(event.date_end).format("DD MMM YYYY - h:mm a");
+					let calcHtml = event.html;
+					calcHtml += "<p style='margin-top: 25px'>"+dateStrings+"</p>";
 					let eventData = {
 						title: event.title,
-						start: new Date(),
-						end: new Date(),
-						html: event.html,
+						start: event.date_start,
+						end: event.date_end,
+						html: calcHtml,
 						className: this.colours[colourNum]
 					}
 					console.log(eventData)
