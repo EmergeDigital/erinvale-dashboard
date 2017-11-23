@@ -49,7 +49,10 @@ export const AppRoutes: Routes = [
             },{
                 path: 'news',
                 loadChildren: './news/news.module#NewsModule'
-            },]
+            },{
+                path: 'event',
+                loadChildren: './event/event.module#EventModule'
+            }]
         },
         {
             path: '',

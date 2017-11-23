@@ -155,13 +155,13 @@ export const ROUTES_ADMIN: RouteInfo[] = [
         ]
     },
     {
-        path: '#',
+        path: '/event',
         title: 'Events',
         type: 'sub',
         icontype: 'ti-flag',
         children: [
-            {path: '#', title: 'Add Event', ab:'E+'},
-            {path: '#', title: 'List Events', ab:'LE'}
+            {path: 'add', title: 'Add Event', ab:'E+'},
+            {path: 'list', title: 'List Events', ab:'LE'}
         ]
     },
     // {
