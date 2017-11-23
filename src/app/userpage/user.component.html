@@ -4,13 +4,13 @@
             <div class="col-lg-4 col-md-5">
                 <div class="card card-user">
                     <div class="image" *ngIf="permissions.getAccountType() === 'GolfMember' ">
-                        <img src="../../assets/img/header_golf.jpg" alt="..."/>
+                        <img src="./../assets/img/header_golf.jpg" alt="..."/>
                     </div>
                     <div class="image" *ngIf="permissions.getAccountType() === 'HomeOwner' ">
-                        <img src="../../assets/img/header_homeowner.jpg" alt="..."/>
+                        <img src="./../assets/img/header_homeowner.jpg" alt="..."/>
                     </div>
                     <div class="image" *ngIf="permissions.getAccountType() === 'Admin' ">
-                        <img src="../../assets/img/header_admin.jpg" alt="..."/>
+                        <img src="./../assets/img/header_admin.jpg" alt="..."/>
                     </div>
                     <div class="card-content">
                         <div class="author" *ngIf="reloadImage"> 
