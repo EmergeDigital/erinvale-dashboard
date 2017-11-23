@@ -3,88 +3,100 @@
         <div class="row">
             <div class="col-lg-offset-2 col-lg-8 col-md-offset-3 col-md-6">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Edit Event</h4>
+                    <div *ngIf="loading" style="padding: 30px;">
+                        <div class="spinner-outer">
+                            <h4>Fetching Data</h4>
+                            <p>Please wait...</p><br>
+                            <div class="spinner-box la-ball-clip-rotate-pulse la-dark la-2x">
+                                <div></div>
+                                <div></div>
+                            </div>                                    
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Title *</label>
-                                        <input type="text" class="form-control border-input"  [(ngModel)]="event.title"  placeholder="Title" value="" name="t">
+                    <div *ngIf="!loading">
+                        <div class="card-header">
+                            <h4 class="card-title">Edit Event</h4>
+                        </div>
+                        <div class="card-content">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Title *</label>
+                                            <input type="text" class="form-control border-input"  [(ngModel)]="event.title"  placeholder="Title" value="" name="t">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Subtitle *</label>
+                                            <input type="text" class="form-control border-input" [(ngModel)]="event.subtitle" placeholder="Subtitle" value="" name="st">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Subtitle *</label>
-                                        <input type="text" class="form-control border-input" [(ngModel)]="event.subtitle" placeholder="Subtitle" value="" name="st">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- <h4 class="card-title">Date Start</h4> -->
+                                        <div class="form-group">
+                                            <label>Date Start *</label>
+                                            <input id="dateStart" type="text" class="form-control" placeholder="Date Start" name="ds"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- <h4 class="card-title">Date End</h4> -->
+                                        <div class="form-group">
+                                            <label>Date End *</label>
+                                            <input id="dateEnd" type="text" class="form-control" placeholder="Date End" name="de"/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <!-- <h4 class="card-title">Date Start</h4> -->
-                                    <div class="form-group">
-                                        <label>Date Start *</label>
-                                        <input id="dateStart" type="text" class="form-control" placeholder="Date Start" name="ds"/>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Location *</label>
+                                            <input type="text" class="form-control border-input"  [(ngModel)]="event.location_name"  placeholder="Where will this event be?" value="" name="l">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <!-- <h4 class="card-title">Date End</h4> -->
-                                    <div class="form-group">
-                                        <label>Date End *</label>
-                                        <input id="dateEnd" type="text" class="form-control" placeholder="Date End" name="de"/>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <br>
+                                        <label>Event Details *</label>
+                                    </div>
+                                    <div class="editor-outer">
+                                        <div [froalaEditor] [(froalaModel)]="event.html"></div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Location *</label>
-                                        <input type="text" class="form-control border-input"  [(ngModel)]="event.location_name"  placeholder="Where will this event be?" value="" name="l">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h4 class="card-title">User Group</h4>
+                                        <div class="radio">
+                                            <input type="radio" name="radio1" id="radio1" value="Home Owner" [(ngModel)]="user_group">
+                                            <label for="radio1">
+                                                Home Owners
+                                            </label>
+                                        </div>
+                
+                                        <div class="radio">
+                                            <input type="radio" name="radio1" id="radio2" value="Golf Member" [(ngModel)]="user_group">
+                                            <label for="radio2">
+                                                Golf Members
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="radio">
+                                            <input type="radio" name="radio1" id="radio3" value="All" [(ngModel)]="user_group">
+                                            <label for="radio3">
+                                                All
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <br>
-                                    <label>Event Details *</label>
+                                <div class="text-center" style="padding: 15px">
+                                    <button [disabled]="updating" type="submit" class="btn btn-info btn-fill btn-wd" (click)="update()">Update Event</button>
                                 </div>
-                                <div class="editor-outer">
-                                    <div [froalaEditor] [(froalaModel)]="event.html"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h4 class="card-title">User Group</h4>
-                                    <div class="radio">
-                                        <input type="radio" name="radio1" id="radio1" value="Home Owner" [(ngModel)]="user_group">
-                                        <label for="radio1">
-                                            Home Owners
-                                        </label>
-                                    </div>
-            
-                                    <div class="radio">
-                                        <input type="radio" name="radio1" id="radio2" value="Golf Member" [(ngModel)]="user_group">
-                                        <label for="radio2">
-                                            Golf Members
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="radio">
-                                        <input type="radio" name="radio1" id="radio3" value="All" [(ngModel)]="user_group">
-                                        <label for="radio3">
-                                            All
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center" style="padding: 15px">
-                                <button [disabled]="updating" type="submit" class="btn btn-info btn-fill btn-wd" (click)="update()">Update Event</button>
-                            </div>
-                            <div class="clearfix"></div>
-                        </form>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
