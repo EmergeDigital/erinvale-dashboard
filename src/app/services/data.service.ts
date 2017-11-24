@@ -356,4 +356,22 @@ export class DataService {
       });
     }
     // ============== /EVENTS ============== 
+
+    // ============== DASHBOARD ============== 
+    fetchDashboardData(): Promise<any> {
+      return new Promise((resolve, reject) => {
+        let params = {
+          id: this.auth.current_user.id
+        }
+
+        this.http.get(this.API_URL + "/v1/users/dashboard", {params}).toPromise().then(result => {
+          const _result = result.json();
+          console.log(_result);
+          resolve(_result);
+        }).catch(ex => {
+            reject(ex.json());
+        });
+      });
+    }
+    // ============== /DASHBOARD ============== 
 }
