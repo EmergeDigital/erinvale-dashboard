@@ -13,147 +13,198 @@
             </div>
         </div>
         <div *ngIf="!loading">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <div class="card-content-md">
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <h4>Welcome back,</h4>
-                                    <p>Courtney Jooste</p>
-                                </div>
-                                <!-- <div class="col-xs-5">
-                                    <div class="icon-big icon-warning text-center">
-                                        <i class="ti-server"></i>
+            <div *ngIf="!showAttending">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-content-md">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <h4>Welcome back,</h4>
+                                        <p>Courtney Jooste</p>
                                     </div>
-                                </div>
-                                <div class="col-xs-7">
-                                    <div class="numbers">
-                                        <p>Capacity</p>
-                                        105GB
+                                    <!-- <div class="col-xs-5">
+                                        <div class="icon-big icon-warning text-center">
+                                            <i class="ti-server"></i>
+                                        </div>
                                     </div>
-                                </div> -->
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                            <p>Capacity</p>
+                                            105GB
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <hr />
+                                <div class="stats">
+                                    <i class="ti-face-smile"></i> Good to see you!
+                                </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <hr />
-                            <div class="stats">
-                                <i class="ti-face-smile"></i> Good to see you!
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-content-md">
+                                <div class="row" style="padding-top: 25px;">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-warning text-center">
+                                            <i class="ti-bell"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                            <p>Notifications</p>
+                                            <span>0</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="card-footer">
+                                <hr />
+                                <div class="stats">
+                                    <i class="ti-star"></i> Useen notifications
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <a routerLink="/calendar" class="card-a"><div class="card-content-md">
+                                <div class="row" style="padding-top: 25px;">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-info text-center">
+                                            <i class="ti-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                            <p>New Events</p>
+                                            <span>{{data.new_events.length}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <hr />
+                                <div class="stats">
+                                    <i class="ti-timer"></i> In the last week
+                                </div>
+                            </div></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <a (click)="showAttending = true" class="card-a"><div class="card-content-md">
+                                <div class="row" style="padding-top: 25px;">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-success text-center">
+                                            <i class="ti-check-box"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                            <p>Attending Events</p>
+                                            <span>{{data.my_events.length}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <hr />
+                                <div class="stats">
+                                    <i class="ti-reload"></i> Updated now
+                                </div>
+                            </div></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <div class="card-content-md">
-                            <div class="row" style="padding-top: 25px;">
-                                <div class="col-xs-5">
-                                    <div class="icon-big icon-warning text-center">
-                                        <i class="ti-bell"></i>
-                                    </div>
-                                </div>
-                                <div class="col-xs-7">
-                                    <div class="numbers">
-                                        <p>Notifications</p>
-                                        <span>0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <hr />
-                            <div class="stats">
-                                <i class="ti-star"></i> Useen notifications
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <a routerLink="/calendar" class="card-a"><div class="card-content-md">
-                            <div class="row" style="padding-top: 25px;">
-                                <div class="col-xs-5">
-                                    <div class="icon-big icon-info text-center">
-                                        <i class="ti-calendar"></i>
-                                    </div>
-                                </div>
-                                <div class="col-xs-7">
-                                    <div class="numbers">
-                                        <p>New Events</p>
-                                        <span>{{data.new_events.length}}</span>
+                
+                <div class="row">
+                    <!-- Upcoming Events -->
+                        <div class="col-lg-6">
+                            <div class="card">                    
+                                <div class="card-content">                            
+                                    <h4 class="card-title">Upcoming Events</h4>
+                                    <hr>
+                                    <div class="row"> 
+                                        <div class="col-md-12" *ngFor="let event of data.events">
+                                            <a (click)="eventClicked(event)"><div [class]="getClass(event)">
+                                                <div class="event-card card-content">
+                                                    
+                                                    <h4 class="card-title">{{event.title}}<br />
+                                                        <small>{{event.subtitle}}</small>
+                                                    </h4>
+                                                    <hr>
+                                                    <b>Date Start: </b>{{getDate(event.date_start)}}<br>
+                                                    <b>Date End: </b>{{getDate(event.date_end)}}
+                                                </div>
+                                            </div></a> 
+                                        </div> 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <hr />
-                            <div class="stats">
-                                <i class="ti-timer"></i> In the last week
-                            </div>
-                        </div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <a (click)="showAttending()" class="card-a"><div class="card-content-md">
-                            <div class="row" style="padding-top: 25px;">
-                                <div class="col-xs-5">
-                                    <div class="icon-big icon-success text-center">
-                                        <i class="ti-check-box"></i>
-                                    </div>
-                                </div>
-                                <div class="col-xs-7">
-                                    <div class="numbers">
-                                        <p>Attending Events</p>
-                                        <span>{{data.my_events.length}}</span>
+                        <!-- Latest News -->
+                        <div class="col-lg-6">
+                            <div class="card">                    
+                                <div class="card-content">     
+                                    <h4 class="card-title">Latest News</h4>
+                                    <hr>
+                                    <div class="row"> 
+                                        <div class="col-md-12" *ngFor="let post of data.posts">
+                                            <a (click)="newsClicked(post)"><div class="card card-user news-card">
+                                                <div class="card-content-sm">
+                                                    <div class="row">
+                                                        <div class="col-xs-7">
+                                                            <h4 class="card-title">{{post.title}}<br />
+                                                                <a href="#"><small>{{post.subtitle}}</small></a>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="text-left" style="padding: 10px;">
+                                                    <p style="text-overflow: ellipsis; overflow: hidden;">{{post.text}}</p>
+                                                </div>
+                                            </div></a>
+                                        </div> 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <hr />
-                            <div class="stats">
-                                <i class="ti-reload"></i> Updated now
-                            </div>
-                        </div></a>
-                    </div>
                 </div>
             </div>
-            
-            <div class="row">
-                <!-- Upcoming Events -->
-                    <div class="col-lg-6">
-                        <div class="card">                    
-                            <div class="card-content">                            
-                                <h4 class="card-title">Upcoming Events</h4>
-                                <hr>
-                                <div class="row"> 
-                                    <div class="col-md-12">
-                                        <div class="card">
-                                            <div class="card-content">  
-                                                <!-- {{event.title}} -->
-                                            </div>
-                                        </div>  
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Latest News -->
-                    <div class="col-lg-6">
-                        <div class="card">                    
-                            <div class="card-content">     
-                                <h4 class="card-title">Latest News</h4>
-                                <hr>
-                                <div class="row"> 
-                                    <div class="col-md-12">
-                                        <div class="card">
-                                            <div class="card-content">  
-                                                <!-- {{post.title}} -->
-                                            </div>
-                                        </div>  
-                                    </div> 
-                                </div>
+
+            <div *ngIf="showAttending">
+                    <div class="row">
+                        <div class="col-lg-6 col-lg-offset-3">
+                            <div class="card">            
+                                <div class="card-content">                            
+                                    <h4 class="card-title"><button (click)="showAttending = false" type="button" class="btn btn-wd btn-default btn-fill btn-move-left">
+                                            <span class="btn-label">
+                                                <i class="ti-angle-left"></i>
+                                            </span>
+                                            Back
+                                        </button>&nbsp;&nbsp;Attending Events</h4>
+                                    <hr>
+                                    <div class="row"> 
+                                        <div class="col-md-12" *ngFor="let event of data.my_events">
+                                            <a (click)="eventClicked(event)"><div [class]="getClass(event)">
+                                                <div class="event-card card-content">
+                                                    
+                                                    <h4 class="card-title">{{event.title}}<br />
+                                                        <small>{{event.subtitle}}</small>
+                                                    </h4>
+                                                    <hr>
+                                                    <b>Date Start: </b>{{getDate(event.date_start)}}<br>
+                                                    <b>Date End: </b>{{getDate(event.date_end)}}
+                                                </div>
+                                            </div></a> 
+                                        </div> 
+                                    </div>
+                                </div> 
                             </div>
                         </div>
                     </div>

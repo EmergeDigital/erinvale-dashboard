@@ -6,8 +6,10 @@ import {DataService} from "./../../services/data.service";
 import {NotificationsService} from "./../../services/notifications.service";
 import {PermissionsService} from "./../../services/permissions.service";
 import * as Chartist from 'chartist';
+import * as moment from 'moment';
 
 declare var $:any;
+declare var swal: any;
 
 @Component({
   selector: 'overview-cmp',
@@ -18,6 +20,8 @@ export class OverviewComponent implements OnInit{
     account_type_user: boolean = false;
     loading: boolean = true;
     data: any;
+    colours: String[] = ["orange", "blue", "green", "brown", "purple"];
+    showAttending: boolean = false;
     // initCirclePercentage(){
     //     $('#chartDashboard, #chartOrders, #chartNewVisitors, #chartSubscriptions, #chartDashboardDoc, #chartOrdersDoc').easyPieChart({
     //         lineWidth: 6,
@@ -130,6 +134,20 @@ export class OverviewComponent implements OnInit{
         this.dataService.fetchDashboardData().then(data=>{
             this.data = data;
             console.log(data);
+            for(let event of data.events) {
+                event.colour = this.randomColour();
+                let dateStrings = "<b>Start: </b>" + moment(event.date_start).format("DD MMM YYYY - h:mm a") + "<br><b>End: </b>" + moment(event.date_end).format("DD MMM YYYY - h:mm a");
+                let calcHtml = event.html;
+                calcHtml += "<p style='margin-top: 25px'>"+dateStrings+"</p>";
+                event.calcHtml = calcHtml;
+            }
+            for(let event of data.my_events) {
+                event.colour = this.randomColour();
+                let dateStrings = "<b>Start: </b>" + moment(event.date_start).format("DD MMM YYYY - h:mm a") + "<br><b>End: </b>" + moment(event.date_end).format("DD MMM YYYY - h:mm a");
+                let calcHtml = event.html;
+                calcHtml += "<p style='margin-top: 25px'>"+dateStrings+"</p>";
+                event.calcHtml = calcHtml;
+            }
             this.loading = false;
         });
 
@@ -148,7 +166,46 @@ export class OverviewComponent implements OnInit{
         }
     }
 
-    showAttending() {
-        console.log("OK GO");
+	eventClicked(event) {
+		let that = this;
+		swal({
+			title: event.title,
+			html: event.calcHtml,
+			showCancelButton: true,
+			confirmButtonText: 'I am attending',
+			cancelButtonText: "No I'm not going",
+			confirmButtonClass: 'btn btn-success',
+			cancelButtonClass: 'btn btn-danger',
+			buttonsStyling: false
+		}).then(function() {            
+			that.dataService.attendEvent(event.id, true).then(result => {
+				that.notify.success("Thank you", "Your attendance has been updated", false, "success");					
+			});
+		}, function(dismiss) {
+			if (!!dismiss && dismiss === 'cancel') {
+				that.dataService.attendEvent(event.id, false).then(result => {
+					that.notify.success("Thank you", "Your attendance has been updated", false, "success");					
+				});
+			}
+		});
+    }
+    
+    newsClicked(post) {
+        this.router.navigate(["/article/" + post.id]);
+    }
+
+    randomColour(): string {
+        let colour = this.colours[Math.floor(Math.random() * this.colours.length)] + "";
+        console.log(colour);
+        return colour;
+    }
+
+    getClass(event): string {
+        let colour_class = event.colour + "-card";
+        return "card card-circle-chart " + colour_class;
+    }
+
+    getDate(event_date) {
+        return moment(event_date).format("DD MMM YYYY - h:mm a")
     }
 }

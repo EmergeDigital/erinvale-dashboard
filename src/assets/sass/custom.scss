@@ -30,6 +30,48 @@
     }
 }
 
+.blue-card {
+    background-color: #b8d8d8;
+}
+
+.orange-card {
+    background-color: #ff8f5e;
+}
+
+.green-card {
+    background-color: #d5e5a3;
+}
+
+.purple-card {
+    background-color: #baa9ba;
+}
+
+.brown-card {
+    background-color: #d6c1ab;
+}
+
+.event-card {
+    text-align: left !important;
+    color: white;
+    padding-bottom: 20px;
+    cursor: pointer;
+    .card-title {
+        color: white;
+        small {
+            color: white;
+        }
+    
+    }
+
+    hr {
+        border-top: 1px solid #f5f5f5;
+    }
+}
+
+.news-card{
+    cursor: pointer;
+}
+
  .perfect-scrollbar-off .sidebar .sidebar-wrapper, .perfect-scrollbar-off .main-panel {
   overflow: auto;
   overflow-x: hidden;
