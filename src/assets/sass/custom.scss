@@ -72,6 +72,23 @@
     cursor: pointer;
 }
 
+.ct-label {
+
+    color: white;
+}
+
+#chartAccountTypes .ct-series-a .ct-bar{
+    stroke: #b8d8d8;
+}
+
+#chartAccountTypes .ct-series-b .ct-bar  {
+    stroke: #EFB200;
+}
+
+#chartAccountTypes .ct-series-c .ct-bar  {
+    stroke: #d5e5a3;
+}
+
  .perfect-scrollbar-off .sidebar .sidebar-wrapper, .perfect-scrollbar-off .main-panel {
   overflow: auto;
   overflow-x: hidden;

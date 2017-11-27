@@ -175,6 +175,74 @@
                             </div>
                         </div>
                 </div>
+                <div *ngIf="permissions.getAccountType() === 'Admin'">
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+                            <div class="card card-circle-chart" data-background-color="brown">
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <div class="numbers pull-left">
+                                                {{getTotalAccounts()}} new users
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <div class="pull-right">
+                                                <!-- <span class="label label-danger">
+                                                    -14%
+                                                </span> TODO later, compare historically?-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h6 class="big-title">total subscriptions <span style="color: red">in last</span> 7 days</h6>
+                                    <div id="chartTotalSubscriptions"></div>
+                                </div>
+                                <div class="card-footer">
+                                    <hr>
+                                    <div class="footer-title">Add new member</div>
+                                    <div class="pull-right">
+                                        <button routerLink="/users/add"class="btn btn-danger btn-fill btn-icon btn-sm">
+                                            <i class="ti-angle-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-circle-chart" data-background-color="orange">
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <div class="numbers pull-left">
+                                                {{getTotalUsers()}} total users
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <div class="pull-right">
+                                                <!-- <span class="label label-danger">
+                                                    -14%
+                                                </span> TODO later, compare historically?-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h6 class="big-title">total users</h6>
+                                    <div id="chartAccountTypes"></div>
+                                </div>
+                                <div class="card-footer">
+                                    <hr>
+                                    <div class="footer-title">View all members</div>
+                                    <div class="pull-right">
+                                        <button routerLink="/users/list" class="btn btn-info btn-fill btn-icon btn-sm">
+                                            <i class="ti-angle-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <div *ngIf="showAttending">

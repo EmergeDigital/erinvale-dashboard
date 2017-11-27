@@ -22,6 +22,7 @@ export class OverviewComponent implements OnInit{
     data: any;
     colours: String[] = ["orange", "blue", "green", "brown", "purple"];
     showAttending: boolean = false;
+    days_array: number [] = [];
     // initCirclePercentage(){
     //     $('#chartDashboard, #chartOrders, #chartNewVisitors, #chartSubscriptions, #chartDashboardDoc, #chartOrdersDoc').easyPieChart({
     //         lineWidth: 6,
@@ -149,8 +150,89 @@ export class OverviewComponent implements OnInit{
                 event.calcHtml = calcHtml;
             }
             this.loading = false;
+            setTimeout(()=>{
+                if(permissions.getAccountType() === "Admin"){
+                    
+                    /*  **************** Chart Subscriptions - single line ******************** */
+                    let labels = [];
+                    let series = [];
+    
+                    for(let x = 0; x < 7; x++){
+                        let day = moment().subtract(x, 'days').format('dddd');
+                        labels.push(day.charAt(0));
+                        series.push(data.new_users[day]);
+                    }
+
+                    this.days_array = series;
+    
+                    var dataDays = {
+                        labels,
+                        series: [
+                            series
+                        ]
+                    };
+    
+                    console.log(dataDays);
+    
+                    var optionsDays: any = {
+                        showPoint: false,
+                        lineSmooth: true,
+                        height: "210px",
+                        axisX: {
+                            showGrid: false,
+                            showLabel: true
+                        },
+                        axisY: {
+                            offset: 40,
+                            showGrid: false
+                        },
+                        low: 0,
+                        high: 'auto',
+                        classNames: {
+                            line: 'ct-line ct-red'
+                        }
+                    };
+    
+                    var chartTotalSubscriptions = new Chartist.Line('#chartTotalSubscriptions', dataDays, optionsDays);
+
+                    var dataUserTypes = {
+                        labels: ["Admin", "Home Owner", "Golf Member"],
+                        series: [data.user_counts.admin, data.user_counts.hoa, data.user_counts.golf]
+                    }
+                    console.log(dataUserTypes);
+
+                    var optionsTypes: any = {
+                        height: "210px",
+                        axisX: {
+                            showGrid: false,
+                            showLabel: true
+                        },
+                        axisY: {
+                            offset: 40,
+                            showGrid: false
+                        },
+                        // low: 0,
+                        // high: 'auto',
+                        distributeSeries: true
+                    };
+    
+                    var chartTotalAccounts = new Chartist.Bar('#chartAccountTypes', dataUserTypes, optionsTypes);
+                }
+            }, 1);
+            
         });
 
+    }
+
+    getTotalAccounts(){
+        if(this.days_array) {
+            return this.days_array.reduce((a, b) => a + b, 0);
+        }
+        return 0;
+    }
+
+    getTotalUsers(){
+        return this.data.user_counts.admin + this.data.user_counts.golf + this.data.user_counts.hoa;
     }
 
     isUser(account_type): boolean {
