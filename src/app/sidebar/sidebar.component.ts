@@ -194,7 +194,7 @@ export class SidebarComponent {
         return true;
     }
     
-    constructor(private permissions : PermissionsService, public auth: AuthService) {
+    constructor(public permissions : PermissionsService, public auth: AuthService) {
         
     }
 

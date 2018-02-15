@@ -121,14 +121,14 @@
                     </div>
                 </div>
                 
-                <div class="row">
+                <div class="row row-eq-height">
                     <!-- Upcoming Events -->
                         <div class="col-lg-6">
                             <div class="card">                    
                                 <div class="card-content">                            
                                     <h4 class="card-title">Upcoming Events</h4>
                                     <hr>
-                                    <div class="row"> 
+                                    <div class="row" *ngIf="data.events.length > 0"> 
                                         <div class="col-md-12" *ngFor="let event of data.events">
                                             <a (click)="eventClicked(event)"><div [class]="getClass(event)">
                                                 <div class="event-card card-content">
@@ -142,6 +142,9 @@
                                                 </div>
                                             </div></a> 
                                         </div> 
+                                    </div>
+                                    <div style="padding-top: 20px; padding-bottom: 20px;" *ngIf="data.events.length === 0">
+                                        <h5>There are no current events</h5>
                                     </div>
                                 </div>
                             </div>

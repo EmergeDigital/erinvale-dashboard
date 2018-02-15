@@ -19,39 +19,39 @@ declare var $:any;
 
 export class EditEventComponent implements OnInit{
   
-    ngOnInit() {
-      $('#dateStart').datetimepicker({
-        icons: {
-            time: "fa fa-clock-o",
-            date: "fa fa-calendar",
-            up: "fa fa-chevron-up",
-            down: "fa fa-chevron-down",
-            previous: 'fa fa-chevron-left',
-            next: 'fa fa-chevron-right',
-            today: 'fa fa-screenshot',
-            clear: 'fa fa-trash',
-            close: 'fa fa-remove'
-        }
-     });
-     $('#dateEnd').datetimepicker({
-       icons: {
-           time: "fa fa-clock-o",
-           date: "fa fa-calendar",
-           up: "fa fa-chevron-up",
-           down: "fa fa-chevron-down",
-           previous: 'fa fa-chevron-left',
-           next: 'fa fa-chevron-right',
-           today: 'fa fa-screenshot',
-           clear: 'fa fa-trash',
-           close: 'fa fa-remove'
-       }
-    });
-  }
+  ngOnInit() {
+    $('#dateStart').datetimepicker({
+      icons: {
+          time: "fa fa-clock-o",
+          date: "fa fa-calendar",
+          up: "fa fa-chevron-up",
+          down: "fa fa-chevron-down",
+          previous: 'fa fa-chevron-left',
+          next: 'fa fa-chevron-right',
+          today: 'fa fa-screenshot',
+          clear: 'fa fa-trash',
+          close: 'fa fa-remove'
+      }
+   });
+   $('#dateEnd').datetimepicker({
+     icons: {
+         time: "fa fa-clock-o",
+         date: "fa fa-calendar",
+         up: "fa fa-chevron-up",
+         down: "fa fa-chevron-down",
+         previous: 'fa fa-chevron-left',
+         next: 'fa fa-chevron-right',
+         today: 'fa fa-screenshot',
+         clear: 'fa fa-trash',
+         close: 'fa fa-remove'
+     }
+  });
+}
 
 
   private sub: any;
   id: string = '';
-  loading: boolean = true;
+  loading: boolean = false;
   user_group: string = '';
   updating: boolean = false;
   showPreview: boolean = false;
