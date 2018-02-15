@@ -163,10 +163,10 @@ export class OverviewComponent implements OnInit{
                         series.push(data.new_users[day]);
                     }
 
-                    this.days_array = series;
+                    this.days_array = series.reverse();
     
                     var dataDays = {
-                        labels,
+                        labels: labels.reverse(),
                         series: [
                             series
                         ]
