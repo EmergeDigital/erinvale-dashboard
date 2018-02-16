@@ -137,7 +137,12 @@ export class ListUsersComponent{
             return {
                 permissions: 'admin'
             };
-        
+
+        case "HOA & GC":
+            return {
+                user_group_golf: true,
+                user_group_hoa: true
+            };
         default:
             return {};
       }

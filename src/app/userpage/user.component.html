@@ -6,7 +6,7 @@
                     <div class="image" *ngIf="permissions.getAccountType() === 'GolfMember' ">
                         <img src="./../assets/img/header_golf.jpg" alt="..."/>
                     </div>
-                    <div class="image" *ngIf="permissions.getAccountType() === 'HomeOwner' ">
+                    <div class="image" *ngIf="permissions.getAccountType() === 'HomeOwner' || permissions.getAccountType() === 'All' ">
                         <img src="./../assets/img/header_homeowner.jpg" alt="..."/>
                     </div>
                     <div class="image" *ngIf="permissions.getAccountType() === 'Admin' ">

@@ -26,6 +26,9 @@ export class PermissionsService {
       return "Admin";
     } else {      
       if(user.user_group_hoa) {
+        if(user.user_group_golf) {
+          return "All";
+        }
         return "HomeOwner";
       }
       return "GolfMember";

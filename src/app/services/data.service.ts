@@ -170,7 +170,6 @@ export class DataService {
         this.http.post(this.API_URL + "/v1/users/update", body).toPromise().then(user => {
             const _user = user.json();
             console.log(_user);
-            this.auth.storeCurrrentUser(_user);
             // this.user_loaded.emit(_user);
             // this.has_loaded = true;
             resolve(_user);

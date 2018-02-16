@@ -67,7 +67,7 @@ export class AdminLayoutComponent implements OnInit {
 
         if(i === -1) {
             //fail here
-            this._colourChanged.emit('danger')
+            this._colourChanged.emit('warning')
         }
 
         this._colourChanged.emit(this.colours[i])

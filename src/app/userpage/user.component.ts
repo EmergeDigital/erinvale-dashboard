@@ -61,6 +61,9 @@ export class UserComponent{
             case "GolfMember":
                 return "Golf Club Member";
 
+            case "All":
+                return "Home Owner's Association";
+
             default:
                 return "Unknown";
                 
@@ -78,6 +81,9 @@ export class UserComponent{
 
             case "GolfMember":
                 return {'border': '5px solid #7AC29A'};
+
+            case "All":
+                return {'border': '5px solid #F3BB45'};
 
             default:
                 return {'border': '5px solid #FFFFFF'};

@@ -156,7 +156,7 @@ export class CalendarComponent implements OnInit{
 		case "GolfMember":        
 			return {
 				user_group_golf: true
-			};
+            };
 		
 		default:
 			return {};

@@ -17,6 +17,7 @@ export class AddUserComponent{
   user_group: string = '';
   updating: boolean = false;
   password_confirm: string = '';
+  user_group_admin: boolean = false;
 
   constructor(public auth: AuthService, public router: Router, private route: ActivatedRoute,
         public data: DataService, public notify: NotificationsService, public permissions: PermissionsService) {
@@ -26,7 +27,7 @@ export class AddUserComponent{
   create() {
     if(this.updating === false) {
       this.updating = true;
-      if(this.user_group !== '') {
+      if(this.checkUserGroups()) {
         if(this.new_user.first_name !== '' && this.new_user.last_name !== ''){
           if(this.new_user.password && this.new_user.password.length > 3) {
             if(this.password_confirm === this.new_user.password) {
@@ -70,26 +71,42 @@ export class AddUserComponent{
     }
   }
 
-  processUserGroup() {
-    switch(this.user_group) {
-      case "Home Owner":
-        this.new_user.user_group_hoa = true;
-        this.new_user.user_group_golf = false;
-        this.new_user.permissions = "user";
-        break;
-      
-      case "Golf Member":        
-      this.new_user.user_group_hoa = false;
-        this.new_user.user_group_golf = true;
-        this.new_user.permissions = "user";
-        break;
-
-      case "Admin":
-        this.new_user.user_group_hoa = false;
-        this.new_user.user_group_golf = false;
-        this.new_user.permissions = "admin";
-        break;
+  checkUserGroups() {
+    // console.log(this.new_user);
+    if (this.new_user.user_group_hoa) {
+      return true;
+    } else if (this.new_user.user_group_golf) {
+      return true;
+    } else if (this.user_group_admin) {
+      return true;
     }
+    return false;
+  }
+
+  processUserGroup() {
+    if (this.user_group_admin) {
+      this.new_user.permissions = "admin";
+    } else {
+      this.new_user.permissions = "user";
+    }
+    //   case "Home Owner":
+    //     this.new_user.user_group_hoa = true;
+    //     this.new_user.user_group_golf = false;
+    //     this.new_user.permissions = "user";
+    //     break;
+      
+    //   case "Golf Member":        
+    //   this.new_user.user_group_hoa = false;
+    //     this.new_user.user_group_golf = true;
+    //     this.new_user.permissions = "user";
+    //     break;
+
+    //   case "Admin":
+    //     this.new_user.user_group_hoa = false;
+    //     this.new_user.user_group_golf = false;
+    //     this.new_user.permissions = "admin";
+    //     break;
+    // }
   }
 
   validateEmail(email): boolean {

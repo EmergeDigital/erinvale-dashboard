@@ -22,6 +22,7 @@ export class EditUserComponent{
   user_group: string = '';
   updating: boolean = false;
   old_email: string = '';
+  user_group_admin: boolean = false;
 
   constructor(public auth: AuthService, public router: Router, private route: ActivatedRoute,
     public data: DataService, public notify: NotificationsService, public permissions: PermissionsService) {
@@ -36,7 +37,12 @@ export class EditUserComponent{
                 this.old_email = user.email;
                 this.loading = false;
                 console.log(this.user);
-                this.user_group = permissions.processAccountType(user).replace(/([A-Z])/g, ' $1').trim()
+                // this.user_group = permissions.processAccountType(user).replace(/([A-Z])/g, ' $1').trim()
+                if (permissions.processAccountType(user) === 'Admin') {
+                  this.user_group_admin = true;
+                } else {
+                  this.user_group_admin = false;
+                }
               } else {
                 this.loading = false;
                 //Error cannot find
@@ -61,7 +67,7 @@ export class EditUserComponent{
   update() {
     if(this.updating === false) {
       this.updating = true;
-      if(this.user_group !== '') {
+      if(this.checkUserGroups()) {
         if(this.user.first_name !== '' && this.user.last_name !== ''){
           if(this.validateEmail(this.user.email)) {
             this.processUserGroup();
@@ -95,30 +101,25 @@ export class EditUserComponent{
     }
   }
 
-
-
-  processUserGroup() {
-    switch(this.user_group) {
-      case "Home Owner":
-        this.user.user_group_hoa = true;
-        this.user.user_group_golf = false;
-        this.user.permissions = "user";
-        break;
-      
-      case "Golf Member":        
-      this.user.user_group_hoa = false;
-        this.user.user_group_golf = true;
-        this.user.permissions = "user";
-        break;
-
-      case "Admin":
-        this.user.user_group_hoa = false;
-        this.user.user_group_golf = false;
-        this.user.permissions = "admin";
-        break;
+  checkUserGroups() {
+    // console.log(this.new_user);
+    if (this.user.user_group_hoa) {
+      return true;
+    } else if (this.user.user_group_golf) {
+      return true;
+    } else if (this.user_group_admin) {
+      return true;
     }
+    return false;
   }
 
+  processUserGroup() {
+    if (this.user_group_admin) {
+      this.user.permissions = "admin";
+    } else {
+      this.user.permissions = "user";
+    }
+  }
   validateEmail(email): boolean {
     let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
