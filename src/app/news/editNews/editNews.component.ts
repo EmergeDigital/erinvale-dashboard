@@ -22,6 +22,8 @@ export class EditNewsComponent{
   updating: boolean = false;
   showPreview: boolean = false;
   news: any = {};
+  froala_loading: boolean = true;
+  froalaOptions: any = {};
 
   constructor(public auth: AuthService, public router: Router, private route: ActivatedRoute,
     public data: DataService, public notify: NotificationsService, public permissions: PermissionsService) {
@@ -34,6 +36,26 @@ export class EditNewsComponent{
               if(!!news) {
                 this.news = news;
                 this.loading = false;
+                this.data.signUrls().then(urls => {
+                  console.log(urls);
+                  this.froalaOptions = {
+                    // IMAGES
+                    imageUploadToS3: urls.images,
+                    ImageMaxSize: 4 * 1024 * 1024, // 4MB LIMIT
+                    ImageAllowedTypes: ['jpg', 'jpeg', 'png', 'gif'],
+                    // VIDOES
+                    videoUploadToS3: urls.videos,
+                    videoMaxSize: 100 * 1024 * 1024, // 100MB LIMIT
+                    videoAllowedTypes: ['webm', 'mp4', 'flv', 'avi', 'wmv', 'mov'],
+                    // DOCS
+                    fileUploadToS3: urls.docs,
+                    fileMaxSize: 25 * 1024 * 1024, // 25MB LIMIT,
+                    fileAllowedTypes: ['*']
+                  };
+                  this.froala_loading = false;
+                  // setTimeout(() => {
+                  // },10)
+                });
                 console.log(this.news);
                 this.user_group = permissions.processAccountType(news).replace(/([A-Z])/g, ' $1').trim()
               } else {

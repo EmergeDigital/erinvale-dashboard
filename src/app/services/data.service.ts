@@ -373,5 +373,33 @@ export class DataService {
         });
       });
     }
-    // ============== /DASHBOARD ============== 
+    // ============== /DASHBOARD ==============
+
+     // ============== FUNCTIONS ==============
+     signUrls(): Promise<any> {
+      return new Promise((resolve, reject) => {
+       this.http.get(this.API_URL + "/v1/functions/signAll").toPromise().then(urls => {
+           const _urls = urls.json();
+           // this.user_loaded.emit(_user);
+           // this.has_loaded = true;
+           resolve(_urls);
+       }).catch(ex => {
+           reject(ex);
+       });
+     });
+    }
+     signUrl(folder: String): Promise<String> {
+      return new Promise((resolve, reject) => {
+        const params = {folder: folder};
+       this.http.get(this.API_URL + "/v1/functions/sign", {params}).toPromise().then(url => {
+           const _url = url.json();
+           // this.user_loaded.emit(_user);
+           // this.has_loaded = true;
+           resolve(_url);
+       }).catch(ex => {
+           reject(ex);
+       });
+     });
+   }
+    // ============== /DASHBOARD ==============
 }

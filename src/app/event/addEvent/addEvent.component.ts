@@ -53,10 +53,33 @@ export class AddEventComponent implements OnInit{
   date_start: any;
   date_end: any;
   refresh: boolean = true;
-
+  froala_loading: boolean = true;
+  froalaOptions: any = {};
+  
   constructor(public auth: AuthService, public router: Router, private route: ActivatedRoute,
         public data: DataService, public notify: NotificationsService, public permissions: PermissionsService) {
 
+          this.froala_loading = true;
+          this.data.signUrls().then(urls => {
+            console.log(urls);
+            this.froalaOptions = {
+              // IMAGES
+              imageUploadToS3: urls.images,
+              ImageMaxSize: 4 * 1024 * 1024, // 4MB LIMIT
+              ImageAllowedTypes: ['jpg', 'jpeg', 'png', 'gif'],
+              // VIDOES
+              videoUploadToS3: urls.videos,
+              videoMaxSize: 100 * 1024 * 1024, // 100MB LIMIT
+              videoAllowedTypes: ['webm', 'mp4', 'flv', 'avi', 'wmv', 'mov'],
+              // DOCS
+              fileUploadToS3: urls.docs,
+              fileMaxSize: 25 * 1024 * 1024, // 25MB LIMIT,
+              fileAllowedTypes: ['*']
+            };
+            this.froala_loading = false;
+            // setTimeout(() => {
+            // },10)
+          });
   }
 
   // date_start: {

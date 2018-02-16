@@ -62,9 +62,18 @@
                                         <br>
                                         <label>Event Details *</label>
                                     </div>
-                                    <div class="editor-outer">
-                                        <div [froalaEditor] [(froalaModel)]="event.html"></div>
+                                    
+                                <div *ngIf="froala_loading" style="padding: 30px;">
+                                    <div class="spinner-outer">
+                                        <div class="spinner-box la-ball-clip-rotate-pulse la-dark la-2x">
+                                            <div></div>
+                                            <div></div>
+                                        </div>                                    
                                     </div>
+                                </div>
+                                <div class="editor-outer" *ngIf="!froala_loading">
+                                    <div [froalaEditor]="froalaOptions" [(froalaModel)]="event.html"></div>
+                                </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
