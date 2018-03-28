@@ -65,7 +65,7 @@
                                                 <!-- <a rel="tooltip" title="View Profile" class="btn btn-info btn-simple btn-xs">
                                                     <i class="ti-user"></i>
                                                 </a> -->
-                                                <a (click)="edit(row)" rel="tooltip" title="Edit Profile" class="btn btn-success btn-simple btn-xs">
+                                                <a (click)="edit(row)" rel="tooltip" title="Edit Profile" class="btn btn-info btn-simple btn-xs">
                                                     <i class="ti-pencil-alt"></i>
                                                 </a>
                                                 <a (click)="confirmDelete(row)" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
@@ -79,7 +79,7 @@
                         </div>
                         <div *ngIf="!loading && !tableData1">
                             <div class="spinner-outer" style="padding: 30px">
-                                <h4>No Users to Display</h4>
+                                <h4>No Events to Display</h4>
                                 <p>Please try again.</p><br>                                  
                             </div>
                         </div>

@@ -17,8 +17,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="card-header">
-                                        <h4 class="card-title">News</h4>
-                                        <p class="category">All News</p>
+                                        <h4 class="card-title">Download</h4>
+                                        <p class="category">All Downloads</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -54,19 +54,26 @@
                                         </thead>
                                     <tbody *ngIf="tableData1 && tableData1.dataRows">
                                         <tr *ngFor="let row of tableData1.dataRows">
-                                            <td><img src="{{row[0]}}" style="max-width: 50px; height: auto"></td>
+                                            <td><button class="btn btn-success btn-fill btn-wd" (click)="saveFile(row[0], row[5])">Download</button></td>
                                             <td>{{row[1]}}</td>
                                             <td>{{row[2]}}</td>
                                             <td>{{row[3]}}</td>
-                                            <td>{{row[4]}}</td>
+                                            <td>
+                                                <span class="green-fill" *ngIf="row[4] === false">Published</span>
+                                                <span class="red-fill" *ngIf="row[4] === true">Archived</span>
+                                                
+                                            </td>
                                             <td class="td-actions text-right">
                                                 <!-- <a rel="tooltip" title="View Profile" class="btn btn-info btn-simple btn-xs">
                                                     <i class="ti-user"></i>
                                                 </a> -->
-                                                <a (click)="edit(row)" rel="tooltip" title="Edit Profile" class="btn btn-info btn-simple btn-xs">
+                                                <a (click)="edit(row)" rel="tooltip" title="Edit File" class="btn btn-info btn-simple btn-xs">
                                                     <i class="ti-pencil-alt"></i>
                                                 </a>
-                                                <a (click)="confirmDelete(row)" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <a (click)="toggleArchive(row)" rel="tooltip" [title]="row[4] ? 'Unarchive' : 'Archive'" [class]="'btn btn-simple btn-xs ' + (row[4] === true ? 'btn-success' : 'btn-danger')" class="">
+                                                    <i class="ti-archive"></i>
+                                                </a>
+                                                <a *ngIf="row[4] === true" (click)="confirmDelete(row)" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                                                     <i class="ti-close"></i>
                                                 </a>
                                             </td>
@@ -75,9 +82,9 @@
                                 </table>
                             </div>
                         </div>
-                        <div *ngIf="!loading && !tableData1">
+                        <div *ngIf="!loading && (!tableData1 || downloads && downloads.length <= 0)">
                             <div class="spinner-outer" style="padding: 30px">
-                                <h4>No News to Display</h4>
+                                <h4>No Downloads to Display</h4>
                                 <p>Please try again.</p><br>                                  
                             </div>
                         </div>

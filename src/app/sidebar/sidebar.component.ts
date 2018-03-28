@@ -164,6 +164,16 @@ export const ROUTES_ADMIN: RouteInfo[] = [
             {path: 'list', title: 'List Events', ab:'LE'}
         ]
     },
+    {
+        path: '/download',
+        title: 'Downloads',
+        type: 'sub',
+        icontype: 'ti-link',
+        children: [
+            {path: 'add', title: 'Add Download', ab:'D+'},
+            {path: 'list', title: 'List Downloads', ab:'LD'}
+        ]
+    },
     // {
     //     path: '#',
     //     title: 'Downloads',

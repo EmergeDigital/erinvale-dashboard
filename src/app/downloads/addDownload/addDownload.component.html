@@ -1,0 +1,79 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-offset-2 col-lg-8 col-md-offset-3 col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Add Download</h4>
+                    </div>
+                    <div class="card-content">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Title *</label>
+                                        <input type="text" class="form-control border-input"  [(ngModel)]="new_download.title"  placeholder="Title" value="" name="t">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Subtitle</label>
+                                        <input type="text" class="form-control border-input" [(ngModel)]="new_download.subtitle" placeholder="Subtitle" value="" name="st">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <input type="text" class="form-control border-input" [(ngModel)]="new_download.description" placeholder="Description" value="" name="sd">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center" style="padding: 10px" *ngIf="new_download.file_name ? new_download.file_name === '' : true">
+								<dropzone [disabled]="uploading" [message]="'Click or drag files here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+                            	<!-- <button class="btn btn-info btn-fill btn-wd">Select File</button> -->
+                            </div>
+                            <div class="text-center" style="padding: 10px" *ngIf="new_download.file_name ? new_download.file_name !== '' : false">
+								<h4>Uploaded File:</h4>
+                                <a (click)="saveFile(new_download.url, new_download.file_name)"><div class="card upload-card">
+                                    {{new_download.file_name}}
+                                </div></a><br>
+                            	<button [disabled]="deleting" class="btn btn-info btn-fill btn-wd" (click)="changeFile()"><i *ngIf="deleting" class="fa fa-spinner fa-spin"></i> Change File</button>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h4 class="card-title">User Group</h4>
+                                    <div class="radio">
+                                        <input type="radio" name="radio1" id="radio1" value="Home Owner" [(ngModel)]="user_group">
+                                        <label for="radio1">
+                                            Home Owners
+                                        </label>
+                                    </div>
+            
+                                    <div class="radio">
+                                        <input type="radio" name="radio1" id="radio2" value="Golf Member" [(ngModel)]="user_group">
+                                        <label for="radio2">
+                                            Golf Members
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="radio">
+                                        <input type="radio" name="radio1" id="radio3" value="All" [(ngModel)]="user_group">
+                                        <label for="radio3">
+                                            All
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center" style="padding: 15px">
+                            	<button [disabled]="updating" type="submit" class="btn btn-info btn-fill btn-wd" (click)="create()">Publish</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

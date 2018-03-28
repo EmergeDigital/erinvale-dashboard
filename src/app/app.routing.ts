@@ -58,6 +58,9 @@ export const AppRoutes: Routes = [
             },{
                 path: 'event',
                 loadChildren: './event/event.module#EventModule'
+            },{
+                path: 'download',
+                loadChildren: './downloads/downloads.module#DownloadsModule'
             }]
         },
         {

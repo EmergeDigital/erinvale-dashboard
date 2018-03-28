@@ -356,6 +356,95 @@ export class DataService {
     }
     // ============== /EVENTS ============== 
 
+
+    // ============== DOWNLOADS ============== 
+    createDownload(download): Promise<any> {  
+      return new Promise((resolve, reject) => {
+        this.http.post(this.API_URL + "/v1/downloads/create", download).toPromise().then(_download => {
+            resolve(_download.json());
+        }).catch(ex => {
+            reject(ex.json());
+        });
+      });
+    }
+    
+    getDownloads(_params: undefined): Promise<any[]> {
+        return new Promise((resolve, reject) => {
+          let permissions = this.permissions.getAccountType();
+          let params = _params || {};
+          
+          this.http.get(this.API_URL + "/v1/downloads/get_all", {params}).toPromise().then(result => {
+              const _result = result.json();
+              resolve(_result);
+          }).catch(ex => {
+              reject(ex);
+          });
+        });
+    }
+    
+    deleteDownload(id): Promise<any> {
+      return new Promise((resolve, reject) => {
+        this.http.post(this.API_URL + "/v1/downloads/delete", {download: {id: id}}).toPromise().then(response => {
+            const _response = response.json();
+            resolve(_response);
+        }).catch(ex => {
+            reject(ex);
+        });
+      });
+    }
+
+    getDownload(id): Promise<any> {
+      return new Promise((resolve, reject) => {                
+        this.http.get(this.API_URL + "/v1/downloads/get", {params: {id}}).toPromise().then(result => {
+            const _result = result.json();
+            resolve(_result);
+        }).catch(ex => {
+            reject(ex);
+        });
+      });
+    }
+    
+    updateDownload(changes, id): Promise<any> {
+      return new Promise((resolve, reject) => {
+        let body = {
+          download: {
+            id
+          },
+          changes
+        };
+
+        this.http.post(this.API_URL + "/v1/downloads/update", body).toPromise().then(result => {
+            const _result = result.json();
+            console.log(_result);
+            resolve(_result);
+        }).catch(ex => {
+            reject(ex.json());
+        });
+      });
+    }
+    
+    downloadedFile(id): Promise<any> {
+      return new Promise((resolve, reject) => {
+        const body = {
+          download: {
+            id
+          },
+          user: {
+            id: this.auth.current_user.id
+          }
+        };
+
+        this.http.post(this.API_URL + "/v1/downloads/count", body).toPromise().then(result => {
+            const _result = result.json();
+            console.log(_result);
+            resolve(_result);
+        }).catch(ex => {
+            reject(ex.json());
+        });
+      });
+    }
+    // ============== /DOWNLOADS ============== 
+
     // ============== DASHBOARD ============== 
     fetchDashboardData(): Promise<any> {
       return new Promise((resolve, reject) => {
@@ -389,12 +478,24 @@ export class DataService {
     }
      signUrl(folder: String): Promise<String> {
       return new Promise((resolve, reject) => {
-        const params = {folder: folder};
+        const params = {folder};
        this.http.get(this.API_URL + "/v1/functions/sign", {params}).toPromise().then(url => {
            const _url = url.json();
            // this.user_loaded.emit(_user);
            // this.has_loaded = true;
            resolve(_url);
+       }).catch(ex => {
+           reject(ex);
+       });
+     });
+   }
+     deleteFile(url: String): Promise<any> {
+      return new Promise((resolve, reject) => {
+        const body = {download: {url}};
+       this.http.post(this.API_URL + '/v1/functions/deleteFile', body).toPromise().then(response => {
+           // this.user_loaded.emit(_user);
+           // this.has_loaded = true;
+           resolve(response.json());
        }).catch(ex => {
            reject(ex);
        });

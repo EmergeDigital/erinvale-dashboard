@@ -4,6 +4,30 @@
  * Licensed under MIT
  */
 
+ .dz-text {
+     margin-top: 40px !important;
+ }
+
+.dz-message {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+ }
+
+ .upload-card {
+     padding: 15px;
+     display: inline-block !important;
+     background-color: #7ac29a;
+     cursor: pointer;
+ }
+
+
+.red-fill {
+    color: rgb(211, 40, 40) !important;
+}
+
+.green-fill {
+    color: rgb(58, 201, 70) !important;
+}
 .pull-right {
     float: right;
 }
