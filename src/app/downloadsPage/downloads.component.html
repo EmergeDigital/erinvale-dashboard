@@ -1,0 +1,57 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="downloads-outer">
+            <div class="card">
+                <div *ngIf="loading" style="padding: 30px;">
+                    <div class="spinner-outer">
+                        <h4>Fetching Data</h4>
+                        <p>Please wait...</p>
+                        <br>
+                        <div class="spinner-box la-ball-clip-rotate-pulse la-dark la-2x">
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!loading">
+                    <div *ngIf="downloads">
+                        <div class="card-header">
+                            <h4 class="card-title">Downloads</h4>
+                        </div>
+                        <div class="card-content">
+                            <!-- NEWS AND EVENTS CARDS HERE -->
+                            <hr>
+                            <div class="card-sq" *ngFor="let d of downloads" (click)="clicked(d)" rel="tooltip" title="Click to download" >
+                                <div class="row">
+                                    <div class="col-xs-3 icon-cont-inner">
+                                        <span [class]="'ti-folder ' + (d.downloaded_by ? d.downloaded_by.includes(self_id) ? 'colourize' : '' : '')"></span>
+                                    </div>
+                                    <div class="col-xs-9"  style="border-left: 1px solid #d8d8d8">
+                                        <div style="padding-top: 15px; padding-bottom: 15px; padding-right: 10px;">
+                                            <div class="dl-wrapper">
+                                                <span class="dl-title">{{d.title}}</span>
+                                            </div>
+                                            <div class="dl-wrapper">
+                                                <span class="dl-subtitle">{{d.subtitle}}</span>
+                                            </div>
+                                            <div class="dl-desc" (click)="showDesc($event, d)" rel="tooltip" title="View file description">
+                                                <a >Show Description</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!downloads" style="padding: 30px;">
+                        <div class="spinner-outer">
+                            <h4>Unable to fetch downloads</h4>
+                            <p>Please try again.</p>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

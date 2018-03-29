@@ -61,6 +61,9 @@ export const AppRoutes: Routes = [
             },{
                 path: 'download',
                 loadChildren: './downloads/downloads.module#DownloadsModule'
+            },{
+                path: '',
+                loadChildren: './downloadsPage/downloads.module#ViewDownloadsModule'
             }]
         },
         {

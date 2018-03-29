@@ -20,6 +20,57 @@
      cursor: pointer;
  }
 
+.downloads-outer {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.card-sq {
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px;
+    border-radius: 2px;
+    margin-top: 15px;
+    background: #fff;
+    cursor: pointer;
+    transition: background 0.5s ease;
+
+    &:hover {
+        background: #EEE;
+        transition: background 0.5s ease;
+    }
+}
+
+.icon-cont-inner {
+    text-align: center;
+    line-height: 110px;
+    font-size: 32px;
+    color: #545454;
+    .ti-folder {
+        margin-left: 10px;
+    }
+}
+
+span.dl-title {
+    font-weight: bold;
+}
+span.dl-subtitle {
+    font-size: 11px;
+}
+
+.dl-wrapper {
+    max-width:100%;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dl-desc {
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.colourize {
+    color: #56a25d !important;
+}
 
 .red-fill {
     color: rgb(211, 40, 40) !important;

@@ -44,7 +44,7 @@ export const ROUTES: RouteInfo[] = [
 
     },
     {
-        path: '#',
+        path: '/downloads',
         title: 'Downloads',
         type: 'link',
         icontype: 'ti-import'
