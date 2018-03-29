@@ -4,6 +4,10 @@
  * Licensed under MIT
  */
 
+ .full-page:after {
+     opacity: 0 !important;
+ }
+
  .dz-text {
      margin-top: 40px !important;
  }
@@ -419,4 +423,10 @@ min-height: 10px;
 }
 ::-webkit-scrollbar-thumb:horizontal {
 min-width: 10px;
+}
+
+@media (max-width: 992px) {
+    .navbar-collapse {
+        background-color: #8ede8a !important;
+    }
 }
