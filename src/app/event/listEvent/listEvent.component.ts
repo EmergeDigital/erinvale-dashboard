@@ -126,7 +126,7 @@ export class ListEventComponent{
 
     processUserGroup(group) {
       switch(group) {
-        case "Home Owner":
+        case "Resident":
             return {
                 user_group_hoa: true
             };

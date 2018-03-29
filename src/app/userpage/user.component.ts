@@ -55,14 +55,14 @@ export class UserComponent{
                 return "Administrative Team";
             
             case "HomeOwner":
-                return "Home Owner's Association";
+                return "Resident";
 
 
             case "GolfMember":
                 return "Golf Club Member";
 
             case "All":
-                return "Home Owner's Association";
+                return "Resident & Golf Club Member";
 
             default:
                 return "Unknown";

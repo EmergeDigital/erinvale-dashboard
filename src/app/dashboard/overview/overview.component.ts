@@ -196,7 +196,7 @@ export class OverviewComponent implements OnInit{
                     var chartTotalSubscriptions = new Chartist.Line('#chartTotalSubscriptions', dataDays, optionsDays);
 
                     var dataUserTypes = {
-                        labels: ["Admin", "Home Owner", "Golf Member"],
+                        labels: ["Admin", "Resident", "Golf Member"],
                         series: [data.user_counts.admin, data.user_counts.hoa, data.user_counts.golf]
                     }
                     console.log(dataUserTypes);

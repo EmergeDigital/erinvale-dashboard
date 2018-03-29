@@ -7,17 +7,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ruterLinkActive = "active" [routerLink]="['/dashboard/overview']">Erinvale Portal</a>
+            <a class="navbar-brand" ruterLinkActive = "active" [routerLink]="['/login']">Erinvale Portal</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#pablo">
+                    <a routerLink="/login">
+                        Login
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/register">
                         Register
                     </a>
                 </li>
                 <li>
-                    <a href="#pablo">
+                    <a routerLink="/contact">
                         Contact
                     </a>
                 </li>

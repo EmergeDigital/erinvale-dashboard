@@ -8,22 +8,18 @@ declare var $:any;
 
 @Component({
     moduleId:module.id,
-    selector: 'register-cmp',
-    templateUrl: './register.component.html'
+    selector: 'contact-cmp',
+    templateUrl: './contact.component.html'
 })
 
-export class RegisterComponent implements OnInit{
+export class ContactComponent implements OnInit{
     test : Date = new Date();
     private toggleButton;
     private sidebarVisible: boolean;
     private nativeElement: Node;
     email: string;
     name: string;
-    address: string;
-    erf: string;
-    mn: string;
-    user_group: string;
-
+    message: string;
     loading = false;
 
     constructor(public data: DataService, private element : ElementRef, public notify: NotificationsService) {

@@ -60,56 +60,20 @@
 
                                 <div *ngIf="!loading">
                                     <div class="card-header">
-                                        <h3 class="card-title">Register</h3>
+                                        <h3 class="card-title">Contact Us</h3>
                                     </div>
                                     <div class="card-content">
                                         <div class="form-group">
-                                            <label>Name*</label>
+                                            <label>Name</label>
                                             <input type="text" placeholder="Your name" class="form-control input-no-border" [(ngModel)]="name" name="name">
                                         </div>
                                         <div class="form-group">
-                                            <label>Email address*</label>
-                                            <input type="email" placeholder="Your email address" class="form-control input-no-border" [(ngModel)]="email" name="email">
+                                            <label>Email address</label>
+                                            <input type="email" placeholder="Your email" class="form-control input-no-border" [(ngModel)]="email" name="email">
                                         </div>
                                         <div class="form-group">
-                                            <label>I am *</label>
-
-                                            <div class="radio">
-                                                <input type="radio" name="radio1" id="radio1" value="Home Owner" [(ngModel)]="user_group">
-                                                <label for="radio1">
-                                                    A Resident
-                                                </label>
-                                            </div>
-                    
-                                            <div class="radio">
-                                                <input type="radio" name="radio2" id="radio2" value="Golf Member" [(ngModel)]="user_group">
-                                                <label for="radio2">
-                                                    A Golf Member
-                                                </label>
-                                            </div>
-
-                                            <div class="radio">
-                                                <input type="radio" name="radio3" id="radio3" value="Both" [(ngModel)]="user_group">
-                                                <label for="radio3">
-                                                    Both
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div *ngIf="user_group === 'Both' || user_group === 'Golf Member'">
-                                            <div class="form-group">
-                                                <label>Member Number *</label>
-                                                <input type="text" placeholder="Your Member Number" class="form-control input-no-border" [(ngModel)]="mn" name="mn">
-                                            </div>
-                                        </div>
-                                        <div *ngIf="user_group === 'Both' || user_group === 'Home Owner'">
-                                            <div class="form-group">
-                                                <label>ERF Number *</label>
-                                                <input type="text" placeholder="Your ERF Number" class="form-control input-no-border" [(ngModel)]="erf" name="erf">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Address in Erinvale</label>
-                                                <input type="text" placeholder="Your Erinvale Address" class="form-control input-no-border" [(ngModel)]="address" name="address">
-                                            </div>
+                                            <label>Message</label>
+                                            <textarea type="text" placeholder="Your enquiry or message" class="form-control input-no-border" [(ngModel)]="message" name="message">{{message}}</textarea>
                                         </div>
                                     </div>
                                     <div class="card-footer text-center">

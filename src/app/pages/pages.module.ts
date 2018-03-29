@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PagesRoutes } from './pages.routing';
 
 import { RegisterComponent } from './register/register.component';
-import { LockComponent } from './lock/lock.component';
+import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { LoginComponent } from './login/login.component';
     declarations: [
         LoginComponent,
         RegisterComponent,
-        LockComponent
+        ContactComponent
     ]
 })
 

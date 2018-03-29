@@ -29,7 +29,7 @@ export class PermissionsService {
         if(user.user_group_golf) {
           return "All";
         }
-        return "HomeOwner";
+        return "Resident";
       }
       return "GolfMember";
     }

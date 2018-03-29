@@ -123,7 +123,7 @@ export class ListUsersComponent{
 
     processUserGroup(group) {
       switch(group) {
-        case "Home Owner":
+        case "Resident":
             return {
                 user_group_hoa: true
             };
@@ -138,7 +138,7 @@ export class ListUsersComponent{
                 permissions: 'admin'
             };
 
-        case "HOA & GC":
+        case "Resident & GC":
             return {
                 user_group_golf: true,
                 user_group_hoa: true
