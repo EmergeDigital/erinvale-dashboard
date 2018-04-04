@@ -39,6 +39,8 @@ export class EditNewsComponent{
                 this.data.signUrls().then(urls => {
                   console.log(urls);
                   this.froalaOptions = {
+                    // KEY
+                    key: 'NC-13aA-9dpI-7A2qgE-13ynxvI-7A5B-21qr==',
                     // IMAGES
                     imageUploadToS3: urls.images,
                     ImageMaxSize: 4 * 1024 * 1024, // 4MB LIMIT
