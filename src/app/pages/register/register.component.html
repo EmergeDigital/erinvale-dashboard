@@ -42,7 +42,7 @@
                         <form>
                             <div class="card" data-background="color" data-color="blue">
                                 <div *ngIf="loading">
-                                    <div class="loading-box">
+                                    <div class="loading-box" style="padding-bottom: 30px">
                                         
                                         <div class="card-header">
                                             <h3 class="card-title">Submitting</h3>
@@ -75,7 +75,7 @@
                                             <label>I am *</label>
 
                                             <div class="radio">
-                                                <input type="radio" name="radio1" id="radio1" value="Home Owner" [(ngModel)]="user_group">
+                                                <input type="radio" name="radio1" id="radio1" value="Resident" [(ngModel)]="user_group">
                                                 <label for="radio1">
                                                     A Resident
                                                 </label>

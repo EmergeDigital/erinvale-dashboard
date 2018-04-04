@@ -653,5 +653,34 @@ export class DataService {
                 });
         });
     }
-    // ============== /DASHBOARD ==============
+
+    contact(name: String, message: String, email: String): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const body = { name, message, email };
+            this.http
+                .post(this.API_URL + '/v1/functions/contact', body)
+                .toPromise()
+                .then(response => {
+                    resolve(response.json());
+                })
+                .catch(ex => {
+                    reject(ex);
+                });
+        });
+    }
+
+    register(name: String, email: String, user_group: String, erf: String, mn: String, address: String): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const body = { name, email, user_group, erf, mn, address };
+            this.http
+                .post(this.API_URL + '/v1/functions/register', body)
+                .toPromise()
+                .then(response => {
+                    resolve(response.json());
+                })
+                .catch(ex => {
+                    reject(ex.json());
+                });
+        });
+    }
 }

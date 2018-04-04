@@ -21,10 +21,12 @@ export class ContactComponent implements OnInit{
     name: string;
     message: string;
     loading = false;
+    current_error: string;
 
     constructor(public data: DataService, private element : ElementRef, public notify: NotificationsService) {
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
+        this.current_error = '';
     }
     checkFullPageBackgroundImage(){
         var $page = $('.full-page');
@@ -64,7 +66,50 @@ export class ContactComponent implements OnInit{
         }
     }
 
-    submit($event) {
+    
 
+    checkFields() {
+        if (!this.email || this.email === '' || !this.validateEmail(this.email.toLowerCase().trim())) {
+            this.current_error = 'Please enter a valid email address';
+            return false;
+        } else if (!this.name || this.name === '') {
+            this.current_error = 'Please enter your name';
+            return false;
+        } else if (!this.message || this.message === '') {
+            this.current_error = 'Please enter a message';
+            return false;
+        }
+        return true;
+    }
+
+    submit($event) {
+        $event.preventDefault();
+        this.loading = true;
+        if (!this.checkFields()) {
+            this.notify.failure('Unable to send contact request', this.current_error, true, 'warning');
+            this.loading = false;
+            return;
+        }
+
+        this.data.contact(this.name, this.message, this.email.toLowerCase().trim()).then(() => {
+            this.notify.success('Contact request sent', 'Thank you, we will be in touch', true, 'success');
+            this.resetFields();
+            this.loading = false;
+        }).catch(ex => {
+            console.log(ex);
+            this.notify.failure('Unable to send contact request', 'An internal error occured', true, 'warning');
+            this.loading = false;
+        })
+    }
+
+    resetFields() {
+        this.name = '';
+        this.email = '';
+        this.message = '';
+    }
+
+    validateEmail(email): boolean {
+        let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
     }
 }

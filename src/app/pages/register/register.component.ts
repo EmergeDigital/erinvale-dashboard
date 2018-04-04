@@ -23,12 +23,14 @@ export class RegisterComponent implements OnInit{
     erf: string;
     mn: string;
     user_group: string;
+    current_error: string;
 
     loading = false;
 
     constructor(public data: DataService, private element : ElementRef, public notify: NotificationsService) {
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
+        this.current_error = '';
     }
     checkFullPageBackgroundImage(){
         var $page = $('.full-page');
@@ -68,7 +70,60 @@ export class RegisterComponent implements OnInit{
         }
     }
 
-    submit($event) {
+    checkFields() {
+        if (!this.email || this.email === '' || !this.validateEmail(this.email.toLowerCase().trim())) {
+            this.current_error = 'Please enter a valid email address';
+            return false;
+        } else if (!this.name || this.name === '') {
+            this.current_error = 'Please enter your name';
+            return false;
+        } else if (!this.user_group || this.user_group === '') {
+            this.current_error = 'Please select a user type (Golf member, resident or both)';
+            return false;
+        } else if ((this.user_group === 'Golf Member') && (!this.mn || this.mn === '')) {
+            this.current_error = 'Please enter your Member number';
+            return false;
+        } else if ((this.user_group === 'Resident') && (!this.erf || this.erf === '')) {
+            this.current_error = 'Please enter your ERF number';
+            return false;
+        } else if ((this.user_group === 'Both') && (!this.erf || this.erf === '' || !this.mn || this.mn === '')) {
+            this.current_error = 'Please enter your ERF and Member numbers';
+            return false;
+        }
+        return true;
+    }
 
+    submit($event) {
+        $event.preventDefault();
+        this.loading = true;
+        if (!this.checkFields()) {
+            this.notify.failure('Unable to send registration', this.current_error, true, 'warning');
+            this.loading = false;
+            return;
+        }
+
+        this.data.register(this.name, this.email.toLowerCase().trim(), this.user_group, this.erf, this.mn, this.address).then(() => {
+            this.notify.success('Registration request created', 'Thank you, we will be in touch', true, 'success');
+            this.resetFields();
+            this.loading = false;
+        }).catch(ex => {
+            console.log(ex);
+            this.notify.failure('Unable to send registration', 'An internal error occured', true, 'warning');
+            this.loading = false;
+        })
+    }
+
+    resetFields() {
+        this.name = '';
+        this.email = '';
+        this.user_group = null;
+        this.erf = '';
+        this.mn = '';
+        this.address = '';
+    }
+
+    validateEmail(email): boolean {
+        let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
     }
 }
