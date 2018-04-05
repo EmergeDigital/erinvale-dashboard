@@ -654,9 +654,9 @@ export class DataService {
         });
     }
 
-    contact(name: String, message: String, email: String): Promise<any> {
+    contact(name: String, message: String, email: String, user_group: String): Promise<any> {
         return new Promise((resolve, reject) => {
-            const body = { name, message, email };
+            const body = { name, message, email, user_group };
             this.http
                 .post(this.API_URL + '/v1/functions/contact', body)
                 .toPromise()

@@ -21,6 +21,7 @@ export class ContactComponent implements OnInit{
     name: string;
     message: string;
     loading = false;
+    user_group: string;
     current_error: string;
 
     constructor(public data: DataService, private element : ElementRef, public notify: NotificationsService) {
@@ -75,6 +76,9 @@ export class ContactComponent implements OnInit{
         } else if (!this.name || this.name === '') {
             this.current_error = 'Please enter your name';
             return false;
+        }  else if (!this.user_group || this.user_group === '') {
+            this.current_error = 'Please select a user type (Golf member, resident or both)';
+            return false;
         } else if (!this.message || this.message === '') {
             this.current_error = 'Please enter a message';
             return false;
@@ -91,7 +95,7 @@ export class ContactComponent implements OnInit{
             return;
         }
 
-        this.data.contact(this.name, this.message, this.email.toLowerCase().trim()).then(() => {
+        this.data.contact(this.name, this.message, this.email.toLowerCase().trim(), this.user_group).then(() => {
             this.notify.success('Contact request sent', 'Thank you, we will be in touch', true, 'success');
             this.resetFields();
             this.loading = false;
