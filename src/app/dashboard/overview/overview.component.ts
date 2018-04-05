@@ -290,4 +290,10 @@ export class OverviewComponent implements OnInit{
     getDate(event_date) {
         return moment(event_date).format("DD MMM YYYY - h:mm a")
     }
+
+    unescape(input) {
+        const e = document.createElement('div');
+        e.innerHTML = input;
+        return e.childNodes.length === 0 ? '' : e.childNodes[0].nodeValue;
+    }
 }

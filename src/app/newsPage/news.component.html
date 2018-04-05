@@ -61,7 +61,7 @@
 
                                                 <!-- IF POST -->                                                
                                                 <div *ngIf="!n.date_start">
-                                                    <p style="text-overflow: ellipsis; overflow: hidden;">{{n.text}}</p>
+                                                    <p style="text-overflow: ellipsis; overflow: hidden;">{{unescape(n.text)}}</p>
                                                 </div>
                                             </div>
                                         </div></a>
