@@ -54,7 +54,7 @@ export class UserComponent{
             case "Admin":
                 return "Administrative Team";
             
-            case "HomeOwner":
+            case "Resident":
                 return "Resident";
 
 
