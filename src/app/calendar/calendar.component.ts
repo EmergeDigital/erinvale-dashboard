@@ -34,8 +34,8 @@ export class CalendarComponent implements OnInit{
 			title: event.title,
 			html: event.html,
 			showCancelButton: true,
-			confirmButtonText: 'I am attending',
-			cancelButtonText: "No I'm not going",
+			confirmButtonText: 'Save this event',
+			cancelButtonText: "Don't save this",
 			confirmButtonClass: 'btn btn-success',
 			cancelButtonClass: 'btn btn-danger',
 			buttonsStyling: false
@@ -43,7 +43,7 @@ export class CalendarComponent implements OnInit{
 			var $calendar = $('#fullCalendar');
 			$calendar.fullCalendar('unselect');
 			that.data.attendEvent(event.id, true).then(result => {
-				that.notify.success("Thank you", "Your attendance has been updated", false, "success");					
+				that.notify.success("Thank you", "Your event has been saved", false, "success");					
 			});
 		}, function(dismiss) {
 			// dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
@@ -51,7 +51,7 @@ export class CalendarComponent implements OnInit{
 			$calendar.fullCalendar('unselect');
 			if (!!dismiss && dismiss === 'cancel') {
 				that.data.attendEvent(event.id, false).then(result => {
-					that.notify.success("Thank you", "Your attendance has been updated", false, "success");					
+					that.notify.success("Thank you", "Your event has been unsaved", false, "success");					
 				});
 			}
 		});
