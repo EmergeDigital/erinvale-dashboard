@@ -51,14 +51,6 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Profile Picture URL</label>
-                                                <input type="text" class="form-control border-input" [(ngModel)]="user.image_url" placeholder="Profile Picture" value="" name="iu">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
                                                 <label>Address</label>
                                                 <input type="text" class="form-control border-input"  [(ngModel)]="user.addressL1" placeholder="Home Address" value="" name="a1">
                                             </div>
@@ -100,6 +92,61 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div *ngIf="!show_alt">
+
+                                        <div class="text-center" style="padding: 15px">
+                                            <button class="btn btn-info btn-fill btn-wd" (click)="show_alt = true">Show Alternate Address</button>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="show_alt">
+                                        <div class="text-center" style="padding: 15px">
+                                            <button class="btn btn-info btn-fill btn-wd" (click)="show_alt = false">Hide Alternate Address</button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Address Alt</label>
+                                                    <input type="text" class="form-control border-input"  [(ngModel)]="user.addressL1_alt" placeholder="Alternate Address" value="" name="a1a">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Address Alt line 2</label>
+                                                    <input type="text" class="form-control border-input" [(ngModel)]="user.addressL2_alt" placeholder="Alternate Address Continued..." value="" name="a2a">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>City Alt</label>
+                                                    <input type="text" class="form-control border-input" [(ngModel)]="user.city_alt" placeholder="Alternate City" value="" name="ca">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Postal Code Alt</label>
+                                                    <input type="number" class="form-control border-input" [(ngModel)]="user.postal_code_alt" placeholder="Alternate ZIP Code" name="zca">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Province Alt</label>
+                                                    <input type="text" class="form-control border-input" [(ngModel)]="user.province_alt" placeholder="Alternate Province" value="" name="prova">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Country Alt</label>
+                                                    <input type="text" class="form-control border-input" [(ngModel)]="user.country_alt" placeholder="Alternate Country" value="" name="ctya">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4 class="card-title">User Groups</h4>
@@ -120,6 +167,22 @@
                                                 <label for="checkbox3">
                                                     Admin
                                                 </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div *ngIf="user.user_group_hoa">
+                                                <div class="form-group">
+                                                    <label>ERF Number</label>
+                                                    <input type="text" class="form-control border-input" [(ngModel)]="user.erf_number" placeholder="ERF Number" value="" name="erf">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="user.user_group_golf">
+                                                <div class="form-group">
+                                                    <label>Member Number</label>
+                                                    <input type="text" class="form-control border-input" [(ngModel)]="user.member_number" placeholder="Member Number" value="" name="mn">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

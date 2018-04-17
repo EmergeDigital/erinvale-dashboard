@@ -53,14 +53,6 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Profile Picture URL</label>
-                                        <input type="text" class="form-control border-input" [(ngModel)]="new_user.image_url" placeholder="Profile Picture" value="" name="iu">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
                                         <label>Address</label>
                                         <input type="text" class="form-control border-input"  [(ngModel)]="new_user.addressL1" placeholder="Home Address" value="" name="a1">
                                     </div>
@@ -122,6 +114,23 @@
                                         <label for="checkbox3">
                                             Admin
                                         </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div *ngIf="new_user.user_group_hoa">
+                                        <div class="form-group">
+                                            <label>ERF Number</label>
+                                            <input type="text" class="form-control border-input" [(ngModel)]="new_user.erf_number" placeholder="ERF Number" value="" name="erf">
+                                        </div>
+                                    </div>
+                                    <div *ngIf="new_user.user_group_golf">
+                                        <div class="form-group">
+                                            <label>Member Number</label>
+                                            <input type="text" class="form-control border-input" [(ngModel)]="new_user.member_number" placeholder="Member Number" value="" name="mn">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

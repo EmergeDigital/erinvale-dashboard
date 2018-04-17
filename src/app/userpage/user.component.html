@@ -101,14 +101,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Profile Picture URL</label>
                                         <input type="text" class="form-control border-input" [(ngModel)]="auth.current_user.image_url" placeholder="Profile Picture" value="" name="iu">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -153,19 +153,64 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="row">
+                            <div class="text-center" style="padding: 15px">
+                                <button [disabled]="updating" type="submit" class="btn btn-info btn-fill btn-wd" (click)="update()">Update Profile</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Alternate Address</h4>
+                    </div>
+                    <div class="card-content">
+                        <form>
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>About Me</label>
-                                        <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike">
-Oh so, your weak rhyme
-You doubt I'll bother, reading into it
-I'll probably won't, left to my own devices
-But that's the difference in our opinions.
-                                        </textarea>
+                                        <label>Address</label>
+                                        <input type="text" class="form-control border-input"  [(ngModel)]="auth.current_user.addressL1_alt" placeholder="Home Address" value="" name="a1">
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Address line 2</label>
+                                        <input type="text" class="form-control border-input" [(ngModel)]="auth.current_user.addressL2_alt" placeholder="Address Continued..." value="" name="a2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" class="form-control border-input" [(ngModel)]="auth.current_user.city_alt" placeholder="City" value="" name="c">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Postal Code</label>
+                                        <input type="number" class="form-control border-input" [(ngModel)]="auth.current_user.postal_code_alt" placeholder="ZIP Code" name="zc">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Province</label>
+                                        <input type="text" class="form-control border-input" [(ngModel)]="auth.current_user.province_alt" placeholder="Province" value="" name="prov">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control border-input" [(ngModel)]="auth.current_user.country_alt" placeholder="Country" value="" name="cty">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="text-center" style="padding: 15px">
                                 <button [disabled]="updating" type="submit" class="btn btn-info btn-fill btn-wd" (click)="update()">Update Profile</button>
                             </div>

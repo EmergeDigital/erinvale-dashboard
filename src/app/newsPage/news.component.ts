@@ -75,19 +75,19 @@ export class NewsComponent implements OnInit{
 			title: event.title,
 			html: event.calcHtml,
 			showCancelButton: true,
-			confirmButtonText: 'I am attending',
-			cancelButtonText: "No I'm not going",
+			confirmButtonText: 'Save this event',
+			cancelButtonText: "Don't save this",
 			confirmButtonClass: 'btn btn-success',
 			cancelButtonClass: 'btn btn-danger',
 			buttonsStyling: false
 		}).then(function() {            
 			that.data.attendEvent(event.id, true).then(result => {
-				that.notify.success("Thank you", "Your attendance has been updated", false, "success");					
+				that.notify.success("Thank you", "Your event has been saved", false, "success");					
 			});
 		}, function(dismiss) {
 			if (!!dismiss && dismiss === 'cancel') {
 				that.data.attendEvent(event.id, false).then(result => {
-					that.notify.success("Thank you", "Your attendance has been updated", false, "success");					
+					that.notify.success("Thank you", "Your event has been unsaved", false, "success");					
 				});
 			}
 		});
@@ -154,4 +154,7 @@ export class NewsComponent implements OnInit{
         return e.childNodes.length === 0 ? '' : e.childNodes[0].nodeValue;
     }
     
+    shorten(text): string {
+        return text.length > 250 ? text.substring(0, 249) + '...' : text;
+    }
 }

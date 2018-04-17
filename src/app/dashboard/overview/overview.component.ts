@@ -261,12 +261,16 @@ export class OverviewComponent implements OnInit{
 			buttonsStyling: false
 		}).then(function() {            
 			that.dataService.attendEvent(event.id, true).then(result => {
-				that.notify.success("Thank you", "Your event has been saved", false, "success");					
+				that.notify.success("Thank you", "Your event has been saved", false, "success");
+                
+                that.data.my_events = that.data.my_events.filter(e => e.id !== event.id);	
+                that.data.my_events.splice(0, 0, event);			
 			});
 		}, function(dismiss) {
 			if (!!dismiss && dismiss === 'cancel') {
 				that.dataService.attendEvent(event.id, false).then(result => {
-					that.notify.success("Thank you", "Your event has been unsaved", false, "success");					
+					that.notify.success("Thank you", "Your event has been unsaved", false, "success");
+                    that.data.my_events = that.data.my_events.filter(e => e.id !== event.id);						
 				});
 			}
 		});
@@ -295,5 +299,9 @@ export class OverviewComponent implements OnInit{
         const e = document.createElement('div');
         e.innerHTML = input;
         return e.childNodes.length === 0 ? '' : e.childNodes[0].nodeValue;
+    }
+
+    shorten(text): string {
+        return text.length > 250 ? text.substring(0, 249) + '...' : text;
     }
 }

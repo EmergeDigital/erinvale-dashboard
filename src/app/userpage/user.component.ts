@@ -65,7 +65,7 @@ export class UserComponent{
                 return "Resident & Golf Club Member";
 
             default:
-                return "Unknown";
+                return "Resident";
                 
         }
     }
@@ -76,7 +76,7 @@ export class UserComponent{
             case "Admin":
                 return {'border': '5px solid #68B3C8'};
             
-            case "HomeOwner":
+            case "Resident":
                 return {'border': '5px solid #F3BB45'};
 
             case "GolfMember":
@@ -86,7 +86,7 @@ export class UserComponent{
                 return {'border': '5px solid #F3BB45'};
 
             default:
-                return {'border': '5px solid #FFFFFF'};
+                return {'border': '5px solid #F3BB45'};
                 
         }
     }

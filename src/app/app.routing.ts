@@ -48,6 +48,9 @@ export const AppRoutes: Routes = [
                 loadChildren: './newsPage/news.module#NewsModule'
             },{
                 path: '',
+                loadChildren: './disclaimer/disclaimer.module#DisclaimerModule'
+            },{
+                path: '',
                 loadChildren: './article/article.module#ArticleModule'
             },{
                 path: 'users',

@@ -23,6 +23,7 @@ export class EditUserComponent{
   updating: boolean = false;
   old_email: string = '';
   user_group_admin: boolean = false;
+  show_alt = false;
 
   constructor(public auth: AuthService, public router: Router, private route: ActivatedRoute,
     public data: DataService, public notify: NotificationsService, public permissions: PermissionsService) {

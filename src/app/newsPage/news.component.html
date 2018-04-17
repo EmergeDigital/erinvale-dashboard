@@ -61,7 +61,11 @@
 
                                                 <!-- IF POST -->                                                
                                                 <div *ngIf="!n.date_start">
-                                                    <p style="text-overflow: ellipsis; overflow: hidden;">{{unescape(n.text)}}</p>
+                                                    <p style="text-overflow: ellipsis; overflow: hidden;">{{shorten(unescape(n.text))}}</p>
+                                                </div>
+
+                                                <div style="padding: 10px; color: #989898; font-size: 11px;">
+                                                    click to read the full article
                                                 </div>
                                             </div>
                                         </div></a>
